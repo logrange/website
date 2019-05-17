@@ -10,7 +10,7 @@
 			foreach ($data as $title=>$link)
 			{
 				$menu[$section_name[1][0]][$section_name[2][0]][$title]['link'] = $link.".html";
-				$menu[$section_name[1][0]][$section_name[2][0]][$title]['active'] = $link == $_REQUEST['page'];
+				$menu[$section_name[1][0]][$section_name[2][0]][$title]['active'] = $link == $_GET['page'];
 			}
 		}
 	}
