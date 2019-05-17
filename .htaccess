@@ -1,0 +1,13 @@
+Options -Indexes 
+
+<IfModule mod_rewrite.c>
+  Options +FollowSymLinks
+  RewriteEngine On
+
+  RewriteCond %{DOCUMENT_ROOT}/docs/$1 !-f
+  RewriteRule ^docs/(.*).html$ docs/index.php?page=$1 
+  RewriteRule ^docs/(.*).md$ docs/index.php?page=$1 
+
+</IfModule>
+
+#ErrorDocument 404 /index.php
