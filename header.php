@@ -1,29 +1,32 @@
 <?
-	$settings = parse_ini_file($_SERVER["DOCUMENT_ROOT"]."/settings.ini", true);
+	$GLOBALS["SETTINGS"] = parse_ini_file($_SERVER["DOCUMENT_ROOT"]."/settings.ini", true);
 	define("SITE_PATH", getFullServerName());
-	$menu = [];
-	foreach ($settings as $section_name=>$data)
-	{
-		if (preg_match_all("/([^.]+)\.([^.]+)/",$section_name,$section_name))
-		{
-			$menu[$section_name[1][0]][$section_name[2][0]] = [];
-			foreach ($data as $title=>$link)
-			{
-				$menu[$section_name[1][0]][$section_name[2][0]][$title]['link'] = $link.".html";
-				$menu[$section_name[1][0]][$section_name[2][0]][$title]['active'] = $link == $_GET['page'];
-			}
-		}
-	}
+	
 
 	function left_side_menu($type)
 	{
-		global $menu;
+		$menu = [];
+		foreach ($GLOBALS["SETTINGS"] as $section_name=>$data)
+		{
+			if (preg_match_all("/([^.]+)\.([^.]+)/",$section_name,$section_name))
+			{
+				$menu[$section_name[1][0]][$section_name[2][0]] = [];
+				foreach ($data as $title=>$link)
+				{
+					$menu[$section_name[1][0]][$section_name[2][0]][$title]['link'] = $link.".html";
+					if (!isset($_GET['page'])) $_GET['page'] = $link;
+					$menu[$section_name[1][0]][$section_name[2][0]][$title]['active'] = $link == $_GET['page'];
+				}
+			}
+		}
+		echo "<!--";
+		echo print_r($menu)."-->";
 		foreach ($menu[$type] as $title=>$menu_data)
 		{
 			?><h6 class="dropdown-header"><?=$title?></h6><?
 			foreach ($menu_data as $title=>$data)
 			{
-				?><a class="dropdown-item" href="<?= $data["link"] ?>"<?= $data["active"] ? ' class="active"' : "" ?>><?=$title?></a><?
+				?><a class="dropdown-item<?= $data["active"] ? ' active' : "" ?>" href="<?= $data["link"] ?>"><?=$title?></a><?
 			}
 		}
 	}

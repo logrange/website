@@ -12,7 +12,7 @@
 	<div class="col-12 col-md-9 markdown-body">
 		<?
 		$Parsedown = new Parsedown();
-		echo $Parsedown->text(prepare_md(file_get_contents($settings['github_docs_path'].$_GET['page'].".md")));	
+		echo $Parsedown->text(prepare_md(file_get_contents($GLOBALS["SETTINGS"]['github_docs_path'].$_GET['page'].".md")));	
 		?>
 	</div>
 
