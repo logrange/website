@@ -6,7 +6,7 @@
 <h2>streaming database</h2>
 <p>Logrange is highly performant streaming database for aggregating data like application logs, system metrics, audit logs etc. from thousands of sources.</p>
 <div class="button-container">
-	<button class="btn btn-logrange btn-logrange-primary d-inline-block mr-3 float-left">Get started</button>
+	<a href="#get-logrange" class="btn btn-logrange btn-logrange-primary d-inline-block mr-3 float-left smooth-scroll">Get started</a>
 	<button class="btn btn-logrange btn-logrange-outline d-inline-block float-left"><div class="github-logo"></div>View on github</button>
 </div>
 </div>
@@ -91,7 +91,7 @@ of your system health, monitoring, analytics,anomalies prediction, availability 
 		</div>
 	</div>
 </div>
-<div class="container-fluid get-logrange" style="overflow:hidden"><!--get-logrange-->
+<div class="container-fluid get-logrange" style="overflow:hidden" id="get-logrange"><!--get-logrange-->
 	<div class="container text-center">
 		<div class="row">
 			<div class="col-12">
@@ -120,7 +120,7 @@ It is 100% open-source, so you can</p>
 					</div>
 					<div class="tab-info">
 <div class="tab-content" id="screenTabsContent">
-  <div class="tab-pane show active" id="standalone" role="tabpanel" aria-labelledby="standalone-tab">
+  <div class="tab-pane" id="standalone" role="tabpanel" aria-labelledby="standalone-tab">
 <pre>
 mkdir lrquick
 cd lrquick
@@ -132,13 +132,10 @@ curl -s http://get.logrange.io/install | bash -s lr -d ./bin
 ./bin/lr collect --storage-dir=./collector --daemon
 </pre>  
   </div>
-  <div class="tab-pane" id="kubernetes" role="tabpanel" aria-labelledby="kubernetes-tab">
+  <div class="tab-pane show active" id="kubernetes" role="tabpanel" aria-labelledby="kubernetes-tab">
 <pre>
 mkdir lrquick
 cd lrquick
-# Step 2. Install logrange server and run it
-curl -s http://get.logrange.io/install | bash -s logrange -d ./bin
-./bin/logrange start --base-dir=./data --daemon
 # Step 3. Install logrange client and start collecting logs from the machine
 curl -s http://get.logrange.io/install | bash -s lr -d ./bin
 ./bin/lr collect --storage-dir=./collector --daemon
@@ -151,9 +148,6 @@ cd lrquick
 # Step 2. Install logrange server and run it
 curl -s http://get.logrange.io/install | bash -s logrange -d ./bin
 ./bin/logrange start --base-dir=./data --daemon
-# Step 3. Install logrange client and start collecting logs from the machine
-curl -s http://get.logrange.io/install | bash -s lr -d ./bin
-./bin/lr collect --storage-dir=./collector --daemon
 </pre>  
   </div>
 </div>					
