@@ -7,7 +7,7 @@
 <p>Logrange is highly performant streaming database for aggregating data like application logs, system metrics, audit logs etc. from thousands of sources.</p>
 <div class="button-container">
 	<a href="#get-logrange" class="btn btn-logrange btn-logrange-primary d-inline-block mr-3 float-left smooth-scroll">Get started</a>
-	<button class="btn btn-logrange btn-logrange-outline d-inline-block float-left"><div class="github-logo"></div>View on github</button>
+	<a href="https://github.com/logrange/logrange" class="btn btn-logrange btn-logrange-outline d-inline-block float-left"><div class="github-logo"></div>View on github</a>
 </div>
 </div>
 
