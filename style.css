@@ -38,6 +38,10 @@ text-transform: uppercase;
 	float:right;
 }
 
+.container.content {
+	min-height: calc(100% - 10rem);
+}
+
 .working-with-streams-container {
 	height: 44em;
 }
@@ -244,6 +248,12 @@ h3 {
 .container.docs-page, .container.blog-page, .container.download-page {
 	padding-top: 4em;
 }
+.dropdown-item {
+	line-height: 1.5;
+    margin-bottom: 0.75em;
+	white-space: normal;
+}
+
 
 @media (min-width: 576px) {
 	.navbar.top-navbar {

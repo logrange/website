@@ -26,7 +26,7 @@
 			?><h6 class="dropdown-header"><?=$title?></h6><?
 			foreach ($menu_data as $title=>$data)
 			{
-				?><a class="dropdown-item<?= $data["active"] ? ' active' : "" ?>" href="<?= $data["link"] ?>"><?=$title?></a><?
+				?><a class="dropdown-item<?= $data["active"] ? ' active' : "" ?>" href="<?=SITE_PATH?><?=$type?>/<?= $data["link"] ?>"><?=$title?></a><?
 			}
 		}
 	}
@@ -63,7 +63,7 @@
 
 <body class="<?=PAGE?>">
 	<?include("nav.php");?>
-	<div class="container px-0 <?=PAGE?>">
+	<div class="container content px-0 <?=PAGE?>">
 		<div class="row <?=PAGE?>">
 		
 		
