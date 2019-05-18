@@ -1,5 +1,6 @@
+
 <?define ("PAGE", "front-page");?>
-<?include($_SERVER["DOCUMENT_ROOT"]."/header.php");?>
+<?include($_SERVER["DOCKER_ROOT"]."/header.php");?>
 
 <div class="front-page-intro-block">
 <h1>Logrange</h1>
@@ -198,4 +199,4 @@ curl -s http://get.logrange.io/install | bash -s logrange -d ./bin
 
 </div><!--^contact_us-->
 
-<?include($_SERVER["DOCUMENT_ROOT"]."/footer.php");?>
+<?include($_SERVER["DOCKER_ROOT"]."/footer.php");?>

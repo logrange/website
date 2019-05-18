@@ -1,10 +1,17 @@
 Options -Indexes 
 
+#set not "/" if root http-directory is not /
+SetEnv DOCKER_PREFIX /www
+#DOCKER_ROOT is used instead of DOCUMENT_ROOT
+SetEnv DOCKER_ROOT /opt/lampp/htdocs/www
+
+php_value error_reporting "E_ALL & ~E_NOTICE"
+
 <IfModule mod_rewrite.c>
   Options +FollowSymLinks
   RewriteEngine On
 
-  RewriteCond %{DOCUMENT_ROOT}/docs/$1 !-f
+  RewriteCond %{DOCKER_ROOT}/docs/$1 !-f
   RewriteRule ^docs/(.*).html$ docs/index.php?page=$1 
   RewriteRule ^docs/(.*).md$ docs/index.php?page=$1 
 

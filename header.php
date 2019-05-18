@@ -1,6 +1,6 @@
 <?
-	$GLOBALS["SETTINGS"] = parse_ini_file($_SERVER["DOCUMENT_ROOT"]."/settings.ini", true);
 	define("SITE_PATH", getFullServerName());
+	$GLOBALS["SETTINGS"] = parse_ini_file($_SERVER["DOCKER_ROOT"]."/settings.ini", true);
 	
 
 	function left_side_menu($type)
@@ -46,7 +46,7 @@
 			$protocol = 'https';
 		}
 			
-		return $protocol."://".$_SERVER["SERVER_NAME"]."/";
+		return $protocol."://".$_SERVER["HTTP_HOST"].$_SERVER["DOCKER_PREFIX"]."/";
 	}
 		
 ?>
@@ -58,7 +58,7 @@
 	<meta name="description" content="Logrange Streaming Database.">
 	<title>Logrange Streaming Database.</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-	<link rel="stylesheet" href="../../style.css">
+	<link rel="stylesheet" href="<?=SITE_PATH?>/style.css">
 </head>
 
 <body class="<?=PAGE?>">
