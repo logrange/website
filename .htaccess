@@ -1,5 +1,7 @@
 Options -Indexes 
 
+php_value error_reporting "E_ALL & ~E_NOTICE"
+
 <IfModule mod_rewrite.c>
   Options +FollowSymLinks
   RewriteEngine On

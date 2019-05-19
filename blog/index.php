@@ -5,7 +5,7 @@
 	<div class="col-md-3 d-none d-md-flex left-side-menu">
 		<div class="dropdown-menu show">
 		<?
-			left_side_menu("docs");
+			left_side_menu("blog");
 		?>
 		</div>
 	</div>

@@ -46,7 +46,7 @@
 			$protocol = 'https';
 		}
 			
-		return $protocol."://".$_SERVER["SERVER_NAME"]."/";
+		return $protocol."://".$_SERVER["HTTP_HOST"]."/";
 	}
 		
 ?>
