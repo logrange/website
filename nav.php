@@ -11,8 +11,11 @@
 
 <nav class="navbar top-navbar navbar-expand-sm navbar-light">
 	<div class="container">
-		<div class="position-relative w-100">
-			<a class="navbar-brand" href="<?=SITE_PATH?>"><img src="<?=SITE_PATH?>images/logo.svg"></a>
+		<div class="position-relative w-100 text-center text-sm-left">
+			<a class="navbar-brand mr-0" href="<?=SITE_PATH?>">
+				<img src="<?=SITE_PATH?>images/logo.svg" class="non-mobile-only">
+				<img src="<?=SITE_PATH?>images/logo-butterfly.svg" class="mobile-only">
+			</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 			</button>
