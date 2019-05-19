@@ -1,6 +1,6 @@
 <?define ("PAGE", "blog-page");?>
-<?include(__DIR__."/header.php");?>
-<?require_once ($_SERVER["DOCKER_ROOT"]."/Parsedown.php")?>
+<?include($_SERVER["DOCUMENT_ROOT"]."/header.php");?>
+<?require_once ($_SERVER["DOCUMENT_ROOT"]."/Parsedown.php")?>
 
 	<div class="col-md-3 d-none d-md-flex left-side-menu">
 		<div class="dropdown-menu show">
@@ -16,4 +16,4 @@
 		?>
 	</div>
 
-<?include($_SERVER["DOCKER_ROOT"]."/footer.php");?>
+<?include($_SERVER["DOCUMENT_ROOT"]."/footer.php");?>
