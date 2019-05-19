@@ -10,6 +10,14 @@ php_value error_reporting "E_ALL & ~E_NOTICE"
   RewriteRule ^docs/(.*).html$ docs/index.php?page=$1 
   RewriteRule ^docs/(.*).md$ docs/index.php?page=$1 
 
+  RewriteCond %{DOCUMENT_ROOT}/blog/$1 !-f
+  RewriteRule ^blog/(.*).html$ blog/index.php?page=$1 
+  RewriteRule ^blog/(.*).md$ blog/index.php?page=$1 
+
+  RewriteCond %{DOCUMENT_ROOT}/download/$1 !-f
+  RewriteRule ^download/(.*).html$ download/index.php?page=$1 
+  RewriteRule ^download/(.*).md$ download/index.php?page=$1 
+
 </IfModule>
 
 ErrorDocument 404 /index.php

@@ -10,20 +10,24 @@
 		{
 			if (preg_match_all("/([^.]+)\.([^.]+)/",$section_name,$section_name))
 			{
-				$menu[$section_name[1][0]][$section_name[2][0]] = [];
+				$menu[$section_name[1][0]][$section_name[2][0]] = []; // $section_name[1][0] - page-type; $section_name[2][0] - section of menu
 				foreach ($data as $title=>$link)
 				{
-					$menu[$section_name[1][0]][$section_name[2][0]][$title]['link'] = $link.".html";
-					if (!isset($_GET['page'])) $_GET['page'] = $link;
-					$menu[$section_name[1][0]][$section_name[2][0]][$title]['active'] = $link == $_GET['page'];
+					if ( substr($link, 0, 1) == "/" ) $link = $_SERVER["DOCUMENT_ROOT"]."/".$link; //if relative path - doc is on server
+					$page = array_shift(explode(".", array_pop(explode("/",$link))));
+					$GLOBALS["MENU"]["LINKS"][$section_name[1][0]][$page] = $link;
+					$menu[$section_name[1][0]][$section_name[2][0]][$title]['link'] = $page.".html";
+					if ( !isset($_GET['page']) && ($section_name[1][0] == $type) )
+						$_GET['page'] = $page;
+					$menu[$section_name[1][0]][$section_name[2][0]][$title]['active'] = $page == $_GET['page'];
 				}
 			}
 		}
-		echo "<!--";
-		echo print_r($menu)."-->";
 		foreach ($menu[$type] as $title=>$menu_data)
 		{
+			if ($title):
 			?><h6 class="dropdown-header"><?=$title?></h6><?
+			endif;
 			foreach ($menu_data as $title=>$data)
 			{
 				?><a class="dropdown-item<?= $data["active"] ? ' active' : "" ?>" href="<?=SITE_PATH?><?=$type?>/<?= $data["link"] ?>"><?=$title?></a><?
