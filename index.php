@@ -121,34 +121,34 @@ It is 100% open-source, so you can</p>
 					<div class="tab-info">
 <div class="tab-content" id="screenTabsContent">
   <div class="tab-pane" id="standalone" role="tabpanel" aria-labelledby="standalone-tab">
-<pre>
-mkdir lrquick
-cd lrquick
-# Step 2. Install logrange server and run it
-curl -s http://get.logrange.io/install | bash -s logrange -d ./bin
-./bin/logrange start --base-dir=./data --daemon
-# Step 3. Install logrange client and start collecting logs from the machine
-curl -s http://get.logrange.io/install | bash -s lr -d ./bin
-./bin/lr collect --storage-dir=./collector --daemon
-</pre>  
+
+<b></b>mkdir lrquick<br>
+<b></b>cd lrquick<br>
+<b></b># Step 2. Install logrange server and run it<br>
+<b></b>curl -s http://get.logrange.io/install | bash -s logrange -d ./bin<br>
+<b></b>./bin/logrange start --base-dir=./data --daemon<br>
+<b></b># Step 3. Install logrange client and start collecting logs from the machine<br>
+<b></b>curl -s http://get.logrange.io/install | bash -s lr -d ./bin<br>
+<b></b>./bin/lr collect --storage-dir=./collector --daemon<br>
+  
   </div>
   <div class="tab-pane show active" id="kubernetes" role="tabpanel" aria-labelledby="kubernetes-tab">
-<pre>
-mkdir lrquick
-cd lrquick
-# Step 3. Install logrange client and start collecting logs from the machine
-curl -s http://get.logrange.io/install | bash -s lr -d ./bin
-./bin/lr collect --storage-dir=./collector --daemon
-</pre>  
+
+<b></b>mkdir lrquick<br>
+<b></b>cd lrquick<br>
+<b></b># Step 3. Install logrange client and start collecting logs from the machine<br>
+<b></b>curl -s http://get.logrange.io/install | bash -s lr -d ./bin<br>
+<b></b>./bin/lr collect --storage-dir=./collector --daemon<br>
+  
   </div>
   <div class="tab-pane" id="docker" role="tabpanel" aria-labelledby="docker-tab">
-<pre>
-mkdir lrquick
-cd lrquick
-# Step 2. Install logrange server and run it
-curl -s http://get.logrange.io/install | bash -s logrange -d ./bin
-./bin/logrange start --base-dir=./data --daemon
-</pre>  
+
+<b></b>mkdir lrquick<br>
+<b></b>cd lrquick<br>
+<b></b># Step 2. Install logrange server and run it<br>
+<b></b>curl -s http://get.logrange.io/install | bash -s logrange -d ./bin<br>
+<b></b>./bin/logrange start --base-dir=./data --daemon<br>
+  
   </div>
 </div>					
 					

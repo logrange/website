@@ -224,10 +224,14 @@ text-transform: uppercase;
 	text-align: left;
 	padding: 2.5em;
 }
-.get-logrange .tab-info pre{
+.get-logrange .tab-info {
 	color: #E5E5E5;
 	font-family: "Courier New";
 	font-size: 1em;
+}
+.get-logrange .tab-info b:before {
+	content: "$";
+	margin-right: 1em;
 }
 h3 {
 	font-size: 2em;
