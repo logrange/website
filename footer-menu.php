@@ -11,4 +11,5 @@
 				<a class="nav-link<?=$download_class?>" href="<?=SITE_PATH?>download/">Download</a>
 				</li>
 			</ul>
+		<div class="copyright">Copyright (c) <a href="https://logrange.io">logrange.io</a> 2019</div>
 		</div>
