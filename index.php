@@ -1,4 +1,5 @@
 <?define ("PAGE", "front-page");?>
+<?checkFeedback();?>
 <?include($_SERVER["DOCUMENT_ROOT"]."/header.php");?>
 
 <div class="front-page-intro-block">
@@ -294,16 +295,15 @@ It is 100% open-source, so you can</p>
 
 			</div>
 			<div class="col-12 col-sm-5">
-				<form>
-					<input type="text" class="form-control" placeholder="Your name">
-					<input type="text" class="form-control" placeholder="Your email">
-					<textarea class="form-control mb-3" placeholder="Say hello..."></textarea>
+				<h4 id="formInfo" class="w-100 text-center"></h4>
+				<form method="post" action="/sendform">
+					<input type="text" class="form-control" placeholder="Your name" name="name" pattern="[a-zA-Z '-.]+">
+					<input type="text" class="form-control" placeholder="Your email" name="email" required pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$">
+					<textarea class="form-control mb-3" placeholder="Say hello..." name="message" minlength="10" maxlength="5000" required></textarea>
 					<div class="button-container">
-						<button class="btn btn-logrange btn-logrange-primary">Send message</button>
+						<button class="btn btn-logrange btn-logrange-primary submit-button">Send message</button>
 					</div>
 				</form>
-				
-			
 			</div>
 			<div class="col-sm-1"></div>
 
@@ -316,3 +316,65 @@ It is 100% open-source, so you can</p>
 </div><!--^contact_us-->
 
 <?include($_SERVER["DOCUMENT_ROOT"]."/footer.php");?>
+<script type="text/javascript">
+console.log("start");
+$("form").validate({
+	rules: {
+		email: {
+			required: true,
+			email: true
+			},
+		message: {
+			minlength: 10,
+			maxlength: 5000
+		}
+	}
+});
+$("form").on("submit", function() {return false;});
+$("form input").on("keyup", function() {
+	$(".submit-button")
+		.on("mouseup", function() {
+			if ($("form").valid())
+			$.post("", $("form").serialize(), function(data){
+				var j = JSON.parse(data);
+				if (j.status == "ok") {
+					showInfo("Thank you very much for your feedback.<br>We very appreciate you for it!");
+					$("form").addClass("smooth-hidden");
+				} else {
+					showInfo("<span class='color:red'>" + j.message + "</span>");
+				}
+				}).fail(function(){
+					showInfo("<span class='color:red'>Oops. Could not send the form to the server. Could you try once again later? Sorry about this.</span>");
+				});
+			});
+	$("form input").off("keyup");
+
+});
+function showInfo(msg) {
+	$("#formInfo").html(msg);
+}
+</script>
+<?
+function checkFeedback() {
+	if (!isset($_POST) || !count($_POST)) return;
+	$errors = [];
+	if (!isset($_POST["email"]))
+		$errors [] = "Email is required.";
+	if (!isset($_POST["message"]))
+		$errors [] = "Your message is empty.";
+	else
+		if (strlen($_POST["message"]) < 10 || strlen($_POST["message"]) > 5000)
+		{
+			$errors [] = "Message size could be 10-5000 characters.";
+		}
+	if (count($errors))
+	{
+		echo json_encode(["status" => "error", "message" => implode("<br>", $errors)]);
+	}
+	else
+	{
+		file_put_contents($_SERVER["DOCUMENT_ROOT"]."/feedbackResult.html", "<tr><td>".date("m/d/Y H:i:s")."</td><td>".htmlspecialchars($_POST["name"])."</td><td>".htmlspecialchars($_POST["email"])."</td><td>".htmlspecialchars($_POST["message"])."</td></tr>\n", FILE_APPEND);
+		echo json_encode(["status" => "ok", "message" => ""]);
+	}
+	die();
+}

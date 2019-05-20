@@ -435,6 +435,11 @@ input.form-control:focus, textarea.form-control:focus {
 	color: #00C8FF;	
 }
 
+.smooth-hidden {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s, visibility 0s linear 0.4s;
+}
 
 @font-face {
   font-family: octicons-link;
