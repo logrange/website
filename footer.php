@@ -1,7 +1,7 @@
-			<?if (PAGE == "front-page") include(__DIR__."/footer-menu.php");?>
+			<?if (PAGE == "front-page") include($_SERVER["DOCUMENT_ROOT"]."/footer-menu.php");?>
 			</div>
 		</div>
-		<?if (PAGE != "front-page") include(__DIR__."/footer-menu.php");?>
+		<?if (PAGE != "front-page") include($_SERVER["DOCUMENT_ROOT"]."/footer-menu.php");?>
 
 <!--script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
