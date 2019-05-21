@@ -454,9 +454,8 @@ label.error {
 .footer .copyright {
 	position: absolute;
 	bottom: 5px;
-	left: 0;
-	right: 0;
-	font-size: 0.8em;
+	right: 1em;
+	font-size: 0.7em;
 	color: white;
 }
 .footer .copyright a {
