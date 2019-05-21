@@ -210,7 +210,7 @@ of your system health, monitoring, analytics,anomalies prediction, availability 
 			<div class="col-12 col-sm-5">
 			<p class="get-logrange-intro mb-5 text-center text-sm-left d-inline-block d-sm-block">Logrange is under active development and it is not production ready yet.<br>
 It is 100% open-source, so you can</p>
-				<button class="btn btn-logrange btn-logrange-primary-alt d-inline-block float-sm-left"><div class="github-logo"></div>Try It Right Now</button>
+				<a href="https://github.com/logrange/logrange" class="btn btn-logrange btn-logrange-primary-alt d-inline-block float-sm-left"><div class="github-logo"></div>Try It Right Now</a>
 			</div>
 			<div class="col-12 col-sm-6">
 				<div class="screen">
