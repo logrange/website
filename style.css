@@ -430,15 +430,21 @@ input.form-control:focus, textarea.form-control:focus {
 }
 .btn.btn-logrange.btn-logrange-outline {
 	background: transparent;
-	box-shadow: inset 0 0 0 0.08em rgba(51,70,102,0.5);	
+/*	box-shadow: inset 0 0 0 0.08em rgba(51,70,102,0.5);	
+	transition: box-shadow 0.2s;*/
 	color: #334666;	
-	transition: box-shadow 0.2s;
 	transition: color 0.2s;
+	
+	border: 1px solid rgba(51,70,102,0.5);
+	border-radius: 0;
+	transition: border-color 0.2s;
 }
 .btn.btn-logrange.btn-logrange-outline:hover {
 	background: transparent;
-	box-shadow: inset 0 0 0 0.08em #00C8FF;
-	color: #00C8FF;	
+/*	box-shadow: inset 0 0 0 0.08em #00C8FF;*/
+	color: #00C8FF;
+	
+	border: 1px solid #00C8FF;
 }
 
 .smooth-hidden {
