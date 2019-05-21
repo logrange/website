@@ -225,15 +225,16 @@ text-transform: uppercase;
 	padding: 2.5em;
 }
 .get-logrange .tab-info {
-	color: #E5E5E5;
+	color: #1ad708;
 	font-family: "Courier New";
-	font-size: 1em;
+	font-size: 1.1em;
 }
 .get-logrange .tab-info b:before {
 	content: "$";
+	color: #c6c80d;
 	margin-right: 1em;
 }
-h3 {
+h {
 	font-size: 2em;
 	color: #334666;
 	font-weight: bold;
