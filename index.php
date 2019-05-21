@@ -208,53 +208,62 @@ of your system health, monitoring, analytics,anomalies prediction, availability 
 			</div>
 			<div class="col-1 d-none d-sm-flex"></div>
 			<div class="col-12 col-sm-5">
-			<p class="get-logrange-intro mb-5 text-center text-sm-left d-inline-block d-sm-block">Logrange is under active development and it is not production ready yet.<br>
-It is 100% open-source, so you can</p>
-				<a href="https://github.com/logrange/logrange" class="btn btn-logrange btn-logrange-primary-alt d-inline-block float-sm-left"><div class="github-logo"></div>Try It Right Now</a>
+			<p class="get-logrange-intro mb-4 text-center text-sm-left d-inline-block d-sm-block">Logrange master branch is under active development and it is not production ready yet.<br>
+<br>It is 100% open-source, so you can</p>
+                <a href="https://github.com/logrange/logrange#quick-start" class="btn btn-logrange btn-logrange-primary-alt d-inline-block float-sm-left"><div class="github-logo"></div>Try It Right Now</a>
 			</div>
 			<div class="col-12 col-sm-6">
 				<div class="screen">
 					<div class="tabs">
 						<ul class="nav nav-tabs" role="tablist" id="screenTabs">
 							<li class="nav-item">
-								<a class="nav-link" id="standalone-tab" data-toggle="tab" href="#standalone" role="tab" aria-controls="standalone" aria-selected="true">STANDALONE</a>
+								<a class="nav-link active" id="standalone-tab" data-toggle="tab" href="#standalone" role="tab" aria-controls="standalone" aria-selected="true">STANDALONE</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link active" id="kubernetes-tab" data-toggle="tab" href="#kubernetes" role="tab" aria-controls="kubernetes" aria-selected="true">KUBERNETES</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" id="docker-tab" data-toggle="tab" href="#docker" role="tab" aria-controls="docker" aria-selected="true">DOCKER</a>
+								<a class="nav-link" id="kubernetes-tab" data-toggle="tab" href="#kubernetes" role="tab" aria-controls="kubernetes" aria-selected="true">KUBERNETES</a>
 							</li>
 						</ul>
 					</div>
 					<div class="tab-info">
-<div class="tab-content" id="screenTabsContent">
-  <div class="tab-pane" id="standalone" role="tabpanel" aria-labelledby="standalone-tab"><b></b>mkdir lrquick<br>
-<b></b>cd lrquick<br>
-<b></b># Step 2. Install logrange server and run it<br>
-<b></b>curl -s http://get.logrange.io/install | bash -s logrange -d ./bin<br>
-<b></b>./bin/logrange start --base-dir=./data --daemon<br>
-<b></b># Step 3. Install logrange client and start collecting logs from the machine<br>
-<b></b>curl -s http://get.logrange.io/install | bash -s lr -d ./bin<br>
-<b></b>./bin/lr collect --storage-dir=./collector --daemon</div>
-  <div class="tab-pane show active" id="kubernetes" role="tabpanel" aria-labelledby="kubernetes-tab"><b></b>mkdir lrquick<br>
-<b></b>cd lrquick<br>
-<b></b># Step 3. Install logrange client and start collecting logs from the machine<br>
-<b></b>curl -s http://get.logrange.io/install | bash -s lr -d ./bin<br>
-<b></b>./bin/lr collect --storage-dir=./collector --daemon<br></div>
-  <div class="tab-pane" id="docker" role="tabpanel" aria-labelledby="docker-tab"><b></b>mkdir lrquick<br>
-<b></b>cd lrquick<br>
-<b></b># Step 2. Install logrange server and run it<br>
-<b></b>curl -s http://get.logrange.io/install | bash -s logrange -d ./bin<br>
-<b></b>./bin/logrange start --base-dir=./data --daemon<br></div>
-</div>					
-					
-					
-					
-					
-					
+                        <div class="tab-content" id="screenTabsContent">
+                            <div class="tab-pane show active" id="standalone" role="tabpanel" aria-labelledby="standalone-tab">
+                                # make and enter logrange install dir<br>
+                                <b></b>mkdir /tmp/lrquick && cd /tmp/lrquick<br><br>
+
+                                # download logrange install script<br>
+                                <b></b>curl -sO http://get.logrange.io/install<br/>
+                                <b></b>chmod +x ./install<br><br>
+
+                                # install and run logrange aggregator<br>
+                                <b></b>./install logrange -d ./bin<br>
+                                <b></b>./bin/logrange start --base-dir=./data --daemon<br><br>
+
+                                # install and run logrange collector<br>
+                                <b></b>./install lr -d ./bin<br>
+                                <b></b>./bin/lr collect --storage-dir=./collector --daemon<br><br>
+
+                                # run logrange shell to make your first LQL query!<br>
+                                <b></b>./bin/lr shell<br>
+                            </div>
+                            <div class="tab-pane" id="kubernetes" role="tabpanel" aria-labelledby="kubernetes-tab">
+                                # add helm logrange helm repo and update<br>
+                                <b></b>helm repo add logrange http://get.logrange.io/k8s/helm/<br>
+                                <b></b>helm repo update<br><br>
+
+                                # install logrange components<br>
+                                <b></b>helm install logrange/lr-configs<br>
+                                <b></b>helm install logrange/lr-aggregator<br>
+                                <b></b>helm install logrange/lr-collector<br>
+                                <b></b>helm install logrange/lr-forwarder<br><br>
+
+                                # download and install logrange client<br>
+                                <b></b>curl -s http://get.logrange.io/install | bash -s -- lr -d /usr/local/bin<br><br>
+
+                                # run logrange shell to make your first LQL query!<br>
+                                <b></b>lr shell --server-addr=lr-aggregator.kube-system.svc.cluster.local:9966<br>
+                            </div>
+                        </div>
 					</div>
-					
 					<div class="tabs">
 						<ul class="nav nav-tabs">
 							<li class="nav-item">
@@ -262,10 +271,7 @@ It is 100% open-source, so you can</p>
 							</li>
 						</ul>
 					</div>
-					
 				</div>
-			
-			
 			</div>
 		</div>
 	</div>
@@ -294,13 +300,7 @@ It is 100% open-source, so you can</p>
 				</form>
 			</div>
 			<div class="col-sm-1"></div>
-
-		
-		
-		
 		</div>
-
-
 </div><!--^contact_us-->
 
 <?include($_SERVER["DOCUMENT_ROOT"]."/footer.php");?>
