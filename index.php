@@ -229,36 +229,24 @@ It is 100% open-source, so you can</p>
 					</div>
 					<div class="tab-info">
 <div class="tab-content" id="screenTabsContent">
-  <div class="tab-pane" id="standalone" role="tabpanel" aria-labelledby="standalone-tab">
-
-<b></b>mkdir lrquick<br>
+  <div class="tab-pane" id="standalone" role="tabpanel" aria-labelledby="standalone-tab"><b></b>mkdir lrquick<br>
 <b></b>cd lrquick<br>
 <b></b># Step 2. Install logrange server and run it<br>
 <b></b>curl -s http://get.logrange.io/install | bash -s logrange -d ./bin<br>
 <b></b>./bin/logrange start --base-dir=./data --daemon<br>
 <b></b># Step 3. Install logrange client and start collecting logs from the machine<br>
 <b></b>curl -s http://get.logrange.io/install | bash -s lr -d ./bin<br>
-<b></b>./bin/lr collect --storage-dir=./collector --daemon<br>
-  
-  </div>
-  <div class="tab-pane show active" id="kubernetes" role="tabpanel" aria-labelledby="kubernetes-tab">
-
-<b></b>mkdir lrquick<br>
+<b></b>./bin/lr collect --storage-dir=./collector --daemon</div>
+  <div class="tab-pane show active" id="kubernetes" role="tabpanel" aria-labelledby="kubernetes-tab"><b></b>mkdir lrquick<br>
 <b></b>cd lrquick<br>
 <b></b># Step 3. Install logrange client and start collecting logs from the machine<br>
 <b></b>curl -s http://get.logrange.io/install | bash -s lr -d ./bin<br>
-<b></b>./bin/lr collect --storage-dir=./collector --daemon<br>
-  
-  </div>
-  <div class="tab-pane" id="docker" role="tabpanel" aria-labelledby="docker-tab">
-
-<b></b>mkdir lrquick<br>
+<b></b>./bin/lr collect --storage-dir=./collector --daemon<br></div>
+  <div class="tab-pane" id="docker" role="tabpanel" aria-labelledby="docker-tab"><b></b>mkdir lrquick<br>
 <b></b>cd lrquick<br>
 <b></b># Step 2. Install logrange server and run it<br>
 <b></b>curl -s http://get.logrange.io/install | bash -s logrange -d ./bin<br>
-<b></b>./bin/logrange start --base-dir=./data --daemon<br>
-  
-  </div>
+<b></b>./bin/logrange start --base-dir=./data --daemon<br></div>
 </div>					
 					
 					
@@ -317,7 +305,6 @@ It is 100% open-source, so you can</p>
 
 <?include($_SERVER["DOCUMENT_ROOT"]."/footer.php");?>
 <script type="text/javascript">
-console.log("start");
 $("form").validate({
 	rules: {
 		email: {
@@ -350,9 +337,6 @@ $("form input").on("keyup", function() {
 	$("form input").off("keyup");
 
 });
-function showInfo(msg) {
-	$("#formInfo").html(msg);
-}
 </script>
 <?
 function checkFeedback() {
