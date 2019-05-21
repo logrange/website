@@ -145,6 +145,10 @@
 		width: initial;
 		margin-left: 0;
 	}
+	.tab-pane {
+		position: static;
+		width: 100%;
+	}
 	#copy2clipboard {
 		cursor: pointer;
 		font-size: 1.2em;

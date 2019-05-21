@@ -234,7 +234,11 @@ text-transform: uppercase;
 	color: #c6c80d;
 	margin-right: 1em;
 }
-h {
+.tab-pane {
+    position: absolute;
+    width: calc(100% - 3em);
+}
+h3 {
 	font-size: 2em;
 	color: #334666;
 	font-weight: bold;
