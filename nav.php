@@ -29,9 +29,9 @@
 					<li class="nav-item ">
 					<a class="nav-link<?=$blog_class?>" href="<?=SITE_PATH?>blog/">Blog</a>
 					</li>
-					<li class="nav-item ">
-					<a class="nav-link<?=$download_class?>" href="<?=SITE_PATH?>download/">Download</a>
-					</li>
+<!--					<li class="nav-item ">-->
+<!--					<a class="nav-link--><?//=$download_class?><!--" href="--><?//=SITE_PATH?><!--download/">Download</a>-->
+<!--					</li>-->
 				</ul>
 				<?/*
 				<form class="form-inline d-inline-block">
