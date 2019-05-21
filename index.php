@@ -276,7 +276,7 @@ of your system health, monitoring, analytics,anomalies prediction, availability 
 		</div>
 	</div>
 </div><!--^get-logrange-->
-<div class="container-fluid contact-us"><!--contact_us-->
+<div class="container-fluid contact-us" id="contact-us"><!--contact_us-->
 		<div class="row">
 			<div class="col-sm-1"></div>
 			<div class="col-12 col-sm-5 pr-5">
