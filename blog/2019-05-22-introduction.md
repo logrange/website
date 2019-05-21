@@ -1,82 +1,75 @@
-# What is Logrange?
-Logrange is an open-source platform intended to persist streaming data from thousands of sources. The streaming data is produced in forms of application logs, system metrics, audit logs and other time-based parameters that could be recorded. Logrange allows to persist the information in real-time for further processing later. That is why we call it streaming database.
+---
+title: Announcing Logrange v0.1.0 
+author: Dmitry Spasibenko
+---
+![](https://raw.githubusercontent.com/logrange/website/master/blog/assets/Logrange-Logo-S.png)
 
-__There are plenty of tools that allow to aggregate application logs, metrics and other streaming data. what does make Logrange different?__ 
-Logrange uses another philosophy, which could be expressed by: 
+[Logrange](https://github.com/logrange/logrange) is an open-source streaming database intended for aggegating application logs, metrics, audit logs and other streaming data from thousands of sources. Logrange allows to persist the information in real-time for further processing later. 
 
-> _to persist the data first to have a chance to work with it later_. 
+Logrange is built around the idea that every piece of data is essential. Streaming data such as application logs could be used for different type of analysis, so it should not be dropped just becuase it seems like a garbage, or because it is too big for the pre-preocessing. 
 
-In comparision to many existing tools, that use another concept 
+Also, collecting different types of data and persisting it in one database can signifcantly improve analysis by searching correlation between differnt types of events.
 
-> _to filter data first to persist only essential one for working with it later_
+Logrange is going to be the game changer in distributed systems analytics. Why? Let's try to look into some details. 
 
-Logrange is going to be the game changer. Why? Let's try to look into some details. 
+### Distributed System health and its analysis
+Modern distributed informational systems consist of hundreds or even thoursands of components (applications). Every such application has its own logic and behavioral specific which contributes into the whole system state. A distributed system behaviour is more complex than the behavior of any of the components it consists from. 
 
-# Streaming data and why it should be stored.
-To understand why the streaming data should be stored and analyzed let's look at distributed informational systems, which produce a lot of streaming data and why the data should be analyzed at all.
+When one or many components deviate from their expected behavior it can affect the system health in a whole. Usually we call this deviations as application faults. Components' faults can bring the distributed system to some unpleasant states. Such states can cause the system performance degradation or even the service interrupttion, or the whole system failure. So, it is extemely important to monitor the system components states, to catch unpleasant trends to react on them on time. 
 
-__What is the streaming data in the informational systems?__ 
-Application logs, audit logs, real-time metrics like CPU consumtption, RAM and disk usages recorded in time - are all of the examples of streaming data. The streaming data is data that is generated continuously by thousands of data sources, which typically sent in the data records simultaneously, and in small sizes.
+> The main sources, where the information about a component state could be obtained, are the application logs, audit logs, various system metrics and real-time resource consumption metrics. All of this are examples of so-called _streaming data_.
+
+The **streaming data** is data that is generated continuously by thousands of data sources, which typically sent in the data records simultaneously, and in small sizes.
 
 Despite of the fact that the records are small, due to the number of records the streaming data has very significant volume, which could be counted in hundred of megabytes per second(!)
 
 This data needs to be processed sequentially and incrementally on a record-by-record basis or over sliding time windows, and used for a wide variety of analytics including correlations, aggregations, filtering, and sampling.
 
-__Why should we care about streaming data?__ 
-Modern distributed informational systems consist of hundreds or even thoursands of components (applications). Every such application has its own logic and behavioral specific which contributes into the whole system state. A distributed system behaviour is more complex than the behavior of any of components it consists from. 
+To analyze a distributed system with a purpose to understand whether it is doing well or something goes wrong with it, there are 2 steps should to be done:
+1. _Streaming data_ from different system components should be collected.
+2. Collected information should be analyzed to reveal componnts faults and to build a picture about the system health. 
 
-When one or many components deviate from their normal behavior it can affect the system health in a whole. An application anomaly can bring the distributed system to some unpleasant states. Such states can cause the system performance degradation or even the service interrupttion. So, it is extemely important to monitor the system components states, to catch unpleasant trends to react on them on time. 
+On practice this 2 steps turn into two problems, which should be solved to analyze the distributed system health successfully. 
 
-The main sources, where the information about a component state could be obtained, are the application logs, audit logs, various system metrics and real-time resource consumption metrics. Collecting and analyzing such kind of information would help to understand the distributed system health.
+### Data aggregation problem.
+The biggest issue with data aggregation is the amount of streaming data that should be saved. Due to the real-time data specific, number of components and the amount of the data produced persisting it becomes a challenge. 
 
-So as the number of such system components can be significant and the amount of the information can be tremendously big, the collecting and persisting of such big amount of information could be a problem.
+For example, a distributed system can consists of hundreds of servers, and each of them can produce several gigabytes of logs per hour. The amount could easily reach several terabytes per day. 
 
-> To understand the distributed system behavior we have to work with streaming data effectively
+Most of log aggregation solutions offer powerful tools like full-text search, so they do some data processing like indexing. To index the tremendous amound of data requires significant resources and often it doesn't makes sense at all, so the modern approach is to ask for less logs, to make the tool works. 
 
-## What are the problems to work the streaming data effectively?
-There are 2 problems:
-1. Data aggregation. It becomes a problem when the amount of the streaming data is big enough (hundreds or thoursands megabytes per second). System, which aggregates the data should be fast enough to be able to persist it in real-time.
-2. Data analyzying. So as the data is produced by different distributed system components, to find a correlation between streaming data received from different components could be a problem due to their nature difference.
+Filtering application logs before they will be saved seems to be error prone approach. There is a chance for sure to disregard important information, which can be considered unessential by a mistake.
 
-__What do existing solutions propose?__ 
-There are plenty of products on the market that offer various solutions by collecting and managing the streaming data. There are different classes of products. Some of them allow to collect application logs, another ones offer monitoring resources or some application metrics. There are class of tools that analyze and predict system behavior based on some information collected. What unite all of the tools is the concept:
+> So, the common practice is to filter unessential information, persisting only essential one. The problem here is we loose information, which could be important for further analysis. 
 
-> Persisting filtered data which seems to be useful. All other should be dropped.
+Logrange intends to solve the problem.
 
-The concept dictates the approach that engineers should clearly understand what problems they will face with the distributed system and what kind of streaming data should be collected to reveal them. 
+### Data analysis problem.
+There are different types of streaming data, so there are different tools that intend for collectiong special type of the data as well. Some tools indended to collect system metrics, another ones monitor application resources, third ones collect application logs etc.
 
-The working with such kind of systems suppose to make the following steps:
-1. Understanding what kind of problems can happen
-2. Understanding what kind of streaming data will be helpful
-3. Building data filters and strucutre your data for further analysis
-4. Store only filtered structured data, dropping all the rest 
+It would quite make sense to bring all data from the tools together for further analysis, but the reality looks different. In production systems we could see dozens monitoring tools with a full stack of tools intended to work with the data for a specific domain. One tool monitors and sends some alerts for CPU consumption, another one collects users activity. But for understanding the root cause of high-CPU usage it is not enough to send an alert about it. May be it needs to look into the users activity, but the tool, which collects system metrics, has zero idea about what the users activity is. Practically this is done by humans, but can be done by machine.
 
-Unfortunately, the reality is not perfect as we imagine it, so the approach turns into the following on practice:
-1. Most of streaming data is not stored or disregarded by a number of reasons. Popular ones are: cost of data processing is too high or the data was considered like inessential.
-2. Different tools store different type of streaming data and they are not linked each other for further processing.
+In other words:
+> There are plenty of tools which collet different streaming data, but the data is not put together for comprehensive analysis, so only the data domain specific alerting and analysis is available.
 
-# Why Logrange?
-Logrange is built with another philosophy, which is expressed by the following concept: __To persist the data first to work with already persisted data later__. 
+Logrange is about to solve the problem as well.
 
-Logrange supposes to have the following steps to work with streamind data:
-1. Store any data you system produce, to have it persisted in one place
-2. Having the data persisted, we can use different approaches for analyzing it. The various methods will use different sub-sets of persisted data.
+### What does Logrange offer?
+Logrange offers a method by working with big amount of streaming data. Logrange doesn't try to reduce the amount of data to be persisted, it tries to reduce the amount of data which should be processed in a specific way. 
 
-This approach flips "traditional" one, which is dictated by the cost of handling a record of streming data. Logrange tries to reduce the write operation cost. Applying to the application logs storage, Logrange doesn't try to build index the data, it just stores it. The data could be indexed later and only in case if it makes sense, cause different methods require different data handling.
+#### Persisting everything
+Instead of trying to persist only essential data, Logrange offers to persist all the data. It will be possible if Logrange doesn't try to pre-process data, but just saves it.  Actually what it does. Having all the data persisted, different types of processing for different data sub-sets can be applied. This allows to apply countless methods of data analysis, buidling diffrerent models and gradually approach to understanding the system behavior. 
 
-Persisting streamind data from different sources in one database allows to apply different analysis to the data later. This also gives significant benefits comparing to tradictional approach when engineers should make a decision which data should be persisted based on the methods they are going to used later. Different methods of analyzis could be used later cause the data is persisted and there was no need to filter it before.
+#### Working with the data sub-sets.
+Logrange allows to store different type of streaming data in one database what gives an advantage by structuring it and building various correlations and data analysis on top of the database. For example, Logrange can keep system metrics, application and business logs or any other metrics in it's database. Different types of analysis can be applied. It doesn't make sense to build full-text search index on top of system metrics. But aggregation functions quite make sense.
 
-# Conclustion
-Logrange has been building with using following philosophy:
-1. To persist streaming data first, analyze and process it after.
-2. Streaming data persistence should be cheap, to save whatever is written
-2. To collect unstructured data from different sources in one place.
-3. Oepn source and secure
-4. Be deployed in cloud or on premises.
+### Conclusion
+Logrange strives to achieve the following goals:
+- Persisting streaming data should be cheap. All data is important, so it should be persisted to for later processing.
+- To provide an API for uniform access to the data from thousands of different sources. All data is in one database.
+- To provide tools for the aggregated data further learining and analysis to build an advanced features like AI for the distributed system health.
+- Logrange is open-source and secure, to meet high quality standards for transferring, saving and processing data.
+- Could be run everywhere either in Cloud or on Premises configurations.
+- Easy to run and configure
 
-
-
-
-
-
-
+Logrange is data-centric tool. We, Logrnage's developers, believe that the key component for successful distributed system behavior understanding is streaming data, collected from different part of the system. We believe that they key component of such systems not the method we apply for the data analysis, but have an ability to apply different methods on stored data. We believe, that everything should be stored first and only after that we can afford to apply different data analysis on the stored data sets - building full-text search indexes, aggregations, deep-learining models or even remove a garbage. But before all of this the data must be saved.
