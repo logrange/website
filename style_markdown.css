@@ -1,7 +1,7 @@
 /*** region custom markdown ***/
 .markdown-body h2.markdown-title {
     border: none;
-    font-size: 2em;
+    font-size: 1.4em;
     line-height: 1;
     margin-bottom: 0;
 }
@@ -10,7 +10,7 @@
 }
 .markdown-body h2.markdown-author {
     border: none;
-    font-size: 1.6em;
+    font-size: 1em;
     font-weight: normal;
     margin-top: 0;
     margin-bottom: 1em;

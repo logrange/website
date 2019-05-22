@@ -55,7 +55,7 @@ Logrange allows to store different type of streaming data in one database what g
 
 ### Conclusion
 Logrange strives to achieve the following goals:
-- Persisting streaming data should be cheap. All data is important, so it should be persisted to for later processing.
+- Persisting streaming data should be cheap. All data is important, so it should be persisted in a full amount for later processing.
 - To provide an API for uniform access to the data from thousands of different sources. All data is in one database.
 - To provide tools for the aggregated data further learning and analysis to build an advanced features like AI for the distributed system health.
 - Logrange is open-source and secure, to meet high quality standards for transferring, saving and processing data.
