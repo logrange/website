@@ -1,6 +1,6 @@
 ---
 title: Introducing Logrange
-author: May 22, 2019 by Dmitry Spasibenko
+author: Dmitry Spasibenko
 ---
 
 ### What is Logrange?
