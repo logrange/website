@@ -12,6 +12,9 @@ body.front-page {
 .color-blue {
 	color: #00A4F9;
 }
+.color-grey {
+	color: rgba(199, 199, 199, 0.74);
+}
 
 .navbar.top-navbar {
 	font-size: 0.7rem;

@@ -29,7 +29,7 @@ no matter how big the stored data is. Logrange is able to save millions of recor
 			<div class="col-12 col-sm-6 col-lg-4 px-5 text-left">
 			<img src="<?=SITE_PATH?>images/working/2.svg">
 			<h4>Scalable</h4><p>
-By data - accepts thousands data sources. Logrange HA cluster allows to save more data and serve more client requests.</p>
+Logrange is designed to be scalable horizontally. Data can be distributed across dozens of servers in the cluster. New nodes can be added into the cluster on demand.</p>
 			</div>
 			<div class="col-12 col-sm-6 col-lg-4 px-5 text-left">
 			<img src="<?=SITE_PATH?>images/working/3.svg">
@@ -46,14 +46,13 @@ The data is secure during access, transit and storage. Get the full control over
 			<div class="col-12 col-sm-6 col-lg-4 px-5 text-left">
 			<img src="<?=SITE_PATH?>images/working/5.svg">
 			<h4>Aggregate Data from Everywhere</h4><p>
-The data is secure during access, transit and storage. Get the full control over your data either it is in cloud, containerized or stored on premises.</p>		
+Stream data from different sources and locations: application logs, metrics, run-time records can be saved to Logrange.</p>
 			
 			</div>
 			<div class="col-12 col-sm-6 col-lg-4 px-5 text-left">
 			<img src="<?=SITE_PATH?>images/working/6.svg">
-			<h4>The Data works for you</h4><p>
-Making the data works for you: visibility 
-of your system health, monitoring, analytics,anomalies prediction, availability reports, security, incident investigation etc.</p>			
+			<h4>Making data work for you</h4><p>
+Build tools for data monitoring, analytics, anomalies prediction, availability reports, security, incident investigation etc.</p>
 			
 			</div>
 		</div>
@@ -115,19 +114,7 @@ of your system health, monitoring, analytics,anomalies prediction, availability 
     <span class="sr-only">Next</span>
   </a>
 </div>			
-			
-			
-			
 			</div>
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		</div>
 	</div>
 	</div>
@@ -139,17 +126,17 @@ of your system health, monitoring, analytics,anomalies prediction, availability 
 				<h2>How it works?<br>Give me an example!</h2>
 				<div class="ellipsis non-mobile-only"><div></div><div></div><div></div></div>
 				<div class="how-it-works-media">
-					<div class="top-block">Basic Logrange installation contains<br>everything to work with logs</div>
+					<div class="top-block">Logrange database could be used as<br>a full-featured log-aggregation system</div>
 					<div class="row justify-content-between non-mobile-only">
 						<div class="w-25 text-center">
 						<img src="<?=SITE_PATH?>images/howitworks/1.svg" class="slide w-75">
 						<div class="slide-num">1</div>
-						<p>The data is secure during access, transit and storage. Get the full control over your data either it is in cloud, containerized or stored on premises.</p>
+						<p>Logrange collectors gather log data from distributed system components. The log data is send it to Logrange database.</p>
 						</div>
 						<div class="w-25 text-center">
 						<img src="<?=SITE_PATH?>images/howitworks/2.svg" class="slide w-75" style="margin-top: 160px">
 						<div class="slide-num">2</div>
-						<p>Logrange server persists the log data from the agents and serves the client requests. It supports LQL - <span class="color-blue font-weight-bold">Logrange Query Language</span></p>
+						<p>Logrange server persists the log data from the agents and serves the client requests. It supports <span class="color-blue font-weight-bold">Logrange Query Language</span></p>
 						</div>
 						<div class="w-25 text-center pt-3">
 						<img src="<?=SITE_PATH?>images/howitworks/3.svg" class="slide w-100">
@@ -227,39 +214,39 @@ of your system health, monitoring, analytics,anomalies prediction, availability 
 					<div class="tab-info">
                         <div class="tab-content" id="screenTabsContent">
                             <div class="tab-pane show active" id="standalone" role="tabpanel" aria-labelledby="standalone-tab">
-                                # make and enter logrange install dir<br>
+                                <span class="color-grey"># make and enter logrange install dir</span><br>
                                 <b></b>mkdir /tmp/lrquick && cd /tmp/lrquick<br><br>
 
-                                # download logrange install script<br>
+                                <span class="color-grey"># download logrange install script</span><br>
                                 <b></b>curl -sO http://get.logrange.io/install<br/>
                                 <b></b>chmod +x ./install<br><br>
 
-                                # install and run logrange aggregator<br>
+                                <span class="color-grey"># install and run logrange aggregator</span><br>
                                 <b></b>./install logrange -d ./bin<br>
                                 <b></b>./bin/logrange start --base-dir=./data --daemon<br><br>
 
-                                # install and run logrange collector<br>
+                                <span class="color-grey"># install and run logrange collector</span><br>
                                 <b></b>./install lr -d ./bin<br>
                                 <b></b>./bin/lr collect --storage-dir=./collector --daemon<br><br>
 
-                                # run logrange shell to make your first LQL query!<br>
+                                <span class="color-grey"># run logrange shell to make your first LQL query!</span><br>
                                 <b></b>./bin/lr shell<br>
                             </div>
                             <div class="tab-pane" id="kubernetes" role="tabpanel" aria-labelledby="kubernetes-tab">
-                                # add helm logrange helm repo and update<br>
+                                <span class="color-grey"># add logrange helm repo and update</span><br>
                                 <b></b>helm repo add logrange http://get.logrange.io/k8s/helm/<br>
                                 <b></b>helm repo update<br><br>
 
-                                # install logrange components<br>
+                                <span class="color-grey"># install logrange components</span><br>
                                 <b></b>helm install logrange/lr-configs<br>
                                 <b></b>helm install logrange/lr-aggregator<br>
                                 <b></b>helm install logrange/lr-collector<br>
                                 <b></b>helm install logrange/lr-forwarder<br><br>
 
-                                # download and install logrange client<br>
+                                <span class="color-grey"># download and install logrange client</span><br>
                                 <b></b>curl -s http://get.logrange.io/install | bash -s -- lr -d /usr/local/bin<br><br>
 
-                                # run logrange shell to make your first LQL query!<br>
+                                <span class="color-grey"># run logrange shell to make your first LQL query!</span><br>
                                 <b></b>lr shell --server-addr=lr-aggregator.kube-system.svc.cluster.local:9966<br>
                             </div>
                         </div>
@@ -285,7 +272,8 @@ of your system health, monitoring, analytics,anomalies prediction, availability 
 				<p>Are you considering to have security alerts and notifications for your system?</p>
 				<p>You have multiple monitoring tools for your system, but still think that having one place with all kinds of analytics is a good idea?</p>
 				<p>Do you want to have something like anomalies prediction?</p>
-				<p>Or may be you want to improve your system monitoring and analytics. Contact us and let us help you to resolve this problems.</p>
+				<p>Or may be you want to improve your system monitoring and analytics...</p>
+				<p>Contact us and let us help you to resolve this problems.</p>
 
 			</div>
 			<div class="col-12 col-sm-5">
