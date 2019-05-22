@@ -1,5 +1,5 @@
 ---
-title: Logrange Introduction
+title: Introducing Logrange
 author: May 22, 2019 by Dmitry Spasibenko
 ---
 
