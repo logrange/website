@@ -36,9 +36,9 @@
 	}
 	function prepare_md($txt) {
 		$txt = preg_replace("/\.md([^a-zA-Z])/",'.html$1',$txt);
-		$txt = preg_replace("/---/i","",$txt, 2);
-		$txt = preg_replace("/title: (.+)/i","<h2 class=\"markdown-title\">$1</h2>",$txt);
-		$txt = preg_replace("/author: (.+)/i","<h2 class=\"markdown-author\">$1</h2>",$txt);
+		//$txt = preg_replace("/---/i","",$txt, 2);
+		$txt = preg_replace("/---\r\ntitle: (.+)/i","<h2 class=\"markdown-title\">$1</h2>",$txt);
+		$txt = preg_replace("/author: (.+)\r\n---/i","<h2 class=\"markdown-author\">$1</h2>",$txt);
 		return $txt;
 	}
 
