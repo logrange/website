@@ -7,6 +7,8 @@ Data record is an array of bytes of length N, which is called _size_ of record. 
 ## Stream of records
 Logrange works with stream of records. Stream is an ordered, immutable sequence of records. Records could be appended to a stream:
 
+title: Introducing Logrange
+
 ```
  +--------------------------------------+      +----+
  | R0 | R1 | R2 | R3 | R4 | R5  R6 | R7 |   <- | R8 |
