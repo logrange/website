@@ -11,6 +11,13 @@ $(".left-side-menu a").on("click", function() {
 });
 $("#copy2clipboard").on("mouseup", setClipboard);
 
+$("h6.dropdown-header").on({
+		"click" : function() {
+			$("h6.dropdown-header").removeClass("active");
+			$(this).addClass("active");
+		}
+});
+
 function setClipboard(){
     var id = "_tmp";
     var existsTextarea = document.getElementById(id);

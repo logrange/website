@@ -19,20 +19,36 @@
 					$menu[$section_name[1][0]][$section_name[2][0]][$title]['link'] = $page.".html";
 					if ( !isset($_GET['page']) && ($section_name[1][0] == $type) )
 						$_GET['page'] = $page;
-					$menu[$section_name[1][0]][$section_name[2][0]][$title]['active'] = $page == $_GET['page'];
+					if ($page == $_GET['page'])
+					{
+						$menu[$section_name[1][0]][$section_name[2][0]][$title]['active'] = $page == $_GET['page'];
+						$activeMenuItem = $c;
+					}
 				}
+			if ($section_name[1][0] == $type) $c++;
 			}
 		}
+		unset ($c);
+		
+	?><div class="col-md-3 d-none d-md-flex left-side-menu">
+		<div class="w-100"><?
+		
 		foreach ($menu[$type] as $title=>$menu_data)
 		{
 			if ($title):
-			?><h6 class="dropdown-header"><?=$title?></h6><?
+			?><h6 class="dropdown-header<?=$activeMenuItem == $c ? " active" : ""?>"><?=$title?></h6><div><?
+			$c++;
 			endif;
 			foreach ($menu_data as $title=>$data)
 			{
 				?><a class="dropdown-item<?= $data["active"] ? ' active' : "" ?>" href="<?=SITE_PATH?><?=$type?>/<?= $data["link"] ?>"><?=$title?></a><?
 			}
+			?></div><?
 		}
+		
+		?></div>
+	</div><?
+
 	}
 	function prepare_md($txt) {
 		$txt = preg_replace("/\.md([^a-zA-Z])/",'.html$1',$txt);

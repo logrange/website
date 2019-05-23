@@ -9,6 +9,23 @@ body.front-page {
 	background-repeat: no-repeat;
 	overflow-x: hidden;
 }
+/*** region left-side menu ***/
+h6.dropdown-header {
+	cursor: pointer;
+}
+h6.dropdown-header + div {
+	display: none;
+}
+h6.dropdown-header.active + div {
+	display: block;
+}
+h6.dropdown-header.active {
+	cursor: default;
+	pointer-events: none;
+	background-color: #b3d7ff;
+}
+
+/*** end region ***/
 .color-blue {
 	color: #00A4F9;
 }
