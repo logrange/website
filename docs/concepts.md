@@ -2,12 +2,10 @@
 This document contains main concepts which are essential to understand how Logrange works. 
  
 ## Data record
-Data record is an array of bytes of length N, which is called _size_ of record. The Size of record could be in the range `[0..16384]` (up to 16KB). Record, which contain 0 bytes has Size `N=0`
+Data record is an array of bytes. The size of record (number of bytes in the array) could be in the range `[0..16384]` (up to 16KB). A record could be 0 length.
  
 ## Stream of records
-Logrange works with stream of records. Stream is an ordered, immutable sequence of records. Records could be appended to a stream:
-
-title: Introducing Logrange
+Logrange works with streams of records. Stream is an ordered, immutable sequence of records. Records could be appended to a stream:
 
 ```
  +--------------------------------------+      +----+
@@ -15,17 +13,17 @@ title: Introducing Logrange
  +--------------------------------------+      +----+
 ```
  
-Records in the stream, could be read, but not updated. New records are always added to the end of the stream, so any stream has FIFO (First-In, First-Out) specific. 
+Records in the stream, could be read, but not updated. New records are always added to the end of the stream, so any stream has FIFO (First-In, First-Out) record access method. 
  
 ### Record Position
-Each record in a stream has its position, so it could be read by the record position. The position is encoded into text and usually seems like senseless for human read. The examples could be `0000AB12FD093413` or `479ADF00EC938:123409EEE0091` etc. 
+Each record in a stream has its position, so any record could be addressed by the record position. The position is encoded into text and usually seems like senseless for human read. The examples could be `0000AB12FD093413` or `479ADF00EC938:123409EEE0091` etc. 
  
 The records positions could be copy-pasted to be used in different queries to start reading from the position. They must not be modified by user and provided by Logrange for referring to a record in a stream. 
  
 ## Event
-_Event_ is a record, which payload could be decoded into the object with consists of a list of _fields_. _Field_ is the key-value pair. Event can contain 2 mandatory fields and 0 or more optional ones. The mandatory fields are:
+_Event_ is a record, which payload could be decoded into the object with consists of a list of _fields_. _Field_ is the key-value pair. Event contains 2 mandatory fields and 0 or more optional ones. The mandatory fields are:
 - _ts (timestamp)_ - the field contains a date-time point which associated with the event.
-- _msg (message)_ - a text field, which contains a text with 0 or more characters
+- _msg (message)_ - a text field, which contains a text with 0 or more characters.
  
 Optional fields are text fields. The name of an optional field could not be `ts` or `msg`.
  
@@ -48,23 +46,23 @@ In Logrange every partition has unique combination of tags. For instance, this 3
 So this 3 combinations of tags are unique, so each of them can address a specific partition.
  
 ## Write operation
-Write operation is a process of appending one or more records into ONE partition. Write always specifies the target partitions where the records could be appended to. In case of multiple writes happens at the same time, the records could be shaffled and there is no guarantee which record comes first. 
+Write operation is a process of appending one or more records into ONE partition. Write always specifies the target partition where the records to be appended to. In case of multiple writes happen to the same partition at the same time, the records could be shaffled. 
  
 Example. Two operations W1 and W2 applied simultaneously for a partition P:
 ```
 1. Before writes: P=[R0, R1, R2, R3]
-2. Two writes happened at the same time: W1=[A0, A1, A2], W2=[B0, B2, B3, B4] 
-3. After the writes: P=[R0, R1, R2, R3, B0, A0, A1, B2, B3, B4, A2]
+2. Two writes happened at the same time: W1=[A0, A1, A2], W2=[B0, B1, B2, B3] 
+3. After the writes, one of the possible result: P=[R0, R1, R2, R3, B0, A0, A1, B1, B2, B3, A2]  
 ```
 Logrange guarantees that in the result of a batch write operation W: 
 1. All the records from W will be appended after the all records from the partition, which were there before the write operation. 
-2. The records from the write operation W will appear in the partition in same order as they were written there. 
+2. The records from the write operation W will appear in the partition in the same order as they were written there. 
  
 ## Pipe
 _Pipe_ is a mechanism by which records from a write operation W could be also written to another partition.
  
 A Pipe has the following attributes:
-- _Name_. A pipe unique name which provided by user. 
+- _Name_. A pipe unique name provided by user. 
 - _Source filter_. This is a condition, which will be applied to tags of a write operation W. In case of the condition is true, the pipe operation will be triggered
 - _Destination Tags_. A tags combination which uniquely identify resulted partition
 - _Records filter_. This is a condition which will be applied to every record from W. Only records that meet the criteria, will be written into the destination pipe. 
