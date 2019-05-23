@@ -1,7 +1,5 @@
----
-title: Announcing Logrange v0.1.0 
-author: Dmitry Spasibenko 
----
+## Introducing Logrange
+_May 22, 2019 by Dmitry Spasibenko_
 
 
 ### Introducing Logrange v0.1.0
