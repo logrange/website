@@ -13,6 +13,7 @@ body.front-page {
 .left-side-menu { 
 	background: linear-gradient(180deg, #d1efff 0%, #5ea9e4 100%);	/* background of left-side-menu */
 	width: 15em !important;
+	box-shadow: 2px 2px 7px 1px rgba(0,0,0,0.1);
 }
 .left-side-menu h6.dropdown-header { /* section name */
 	cursor: pointer;
