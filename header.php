@@ -30,8 +30,9 @@
 		}
 		unset ($c);
 		
-	?><div class="col-md-3 d-none d-md-flex left-side-menu">
-		<div class="w-100"><?
+	?><div class="col-md-3 d-none d-md-flex left-side-menu w-25" style="
+    display: table-cell !important; background: linear-gradient(180deg, #0097E6 0%, #005BA3 100%);">
+		<div><?
 		
 		foreach ($menu[$type] as $title=>$menu_data)
 		{
@@ -94,7 +95,7 @@
 
 <body class="<?=PAGE?>">
 	<?include("nav.php");?>
-	<div class="container content px-0 <?=PAGE?>">
-		<div class="row <?=PAGE?>">
+	<div class="container content px-0 <?=PAGE?>" style="display: table">
+		<div class="row <?=PAGE?>" style="display: table-row">
 		
 		
