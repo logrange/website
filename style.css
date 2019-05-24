@@ -11,9 +11,9 @@ body.front-page {
 }
 /*** region left-side menu ***/
 .left-side-menu { 
-	background: linear-gradient(180deg, #d1efff 0%, #5ea9e4 100%);	/* background of left-side-menu */
+	background: linear-gradient(130deg, #f5fffd 0%, rgb(211, 238, 255) 100%);	/* background of left-side-menu */
 	width: 15em !important;
-	box-shadow: 2px 2px 7px 1px rgba(0,0,0,0.1);
+	box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.1);
 }
 .left-side-menu h6.dropdown-header { /* section name */
 	cursor: pointer;
