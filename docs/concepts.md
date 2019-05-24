@@ -8,12 +8,15 @@ Data record is an array of bytes. The size of record (number of bytes in the arr
 Logrange works with streams of records. Stream is an ordered, immutable sequence of records. Records could be appended to a stream:
 
 ```
- +--------------------------------------+      +----+
- | R0 | R1 | R2 | R3 | R4 | R5  R6 | R7 |   <- | R8 |
- +--------------------------------------+      +----+
+HEAD                                  TAIL
+  +--------------------------------------+      +----+
+  | R0 | R1 | R2 | R3 | R4 | R5  R6 | R7 |   <- | R8 |
+  +--------------------------------------+      +----+
 ```
  
 Records in the stream, could be read, but not updated. New records are always added to the end of the stream, so any stream has FIFO (First-In, First-Out) record access method. 
+
+The first record in a stream is named 'HEAD' and the last known one is a 'TAIL'. Any new record in the stream is always append to the tail.
  
 ### Record Position
 Each record in a stream has its position, so any record could be addressed by the record position. The position is encoded into text and usually seems like senseless for human read. The examples could be `0000AB12FD093413` or `479ADF00EC938:123409EEE0091` etc. 
@@ -77,8 +80,8 @@ Pipe: {
 ```
 For the example the pipe will duplicate any operation `W`, which is applied to a partition with a non-empty `name` tag. All records from `W` will be written to the partition tagged by `{logrange.pipe=<pipe name>}` as well. 
  
- ## Write request example
- The following picture visualize data writing process:
+ ### Write request example
+ The following picture visualizes data writing process:
  ![](assets/concepts1.png)
  On the picture the following steps are depicted:
  1. A Write operation request is sent by a client
@@ -86,5 +89,49 @@ For the example the pipe will duplicate any operation `W`, which is applied to a
  3. Partition Controller writes records from the request into the partition. It also notifies Pipe Controller about the write operation. Pipe Controller checks whether there is a pipe for duplicating the write operation into another partition.
  4. Pipe Controller has found a pipe which requires to duplicate the write operation into another partition `{logrange.pipe="app1"}`. Pipe Controller initiate the writing process.
  5. The portion of the data written into partition `{name="app1",ip="1.2.3.4"}` is copied to the partition `{logrange.pipe="app1"}`
+
+## Read operation
+_Read Operation_ intended to obtain records from one or many partitions. Opposed to a Write operation the Read one can read records from multiple partitions. Some stream merge will be needed this case. 
+
+Any Read operation requires the following parameters:
+- _Tags condition_ is a logical expression which identifies which partitions should be selected for the read operation.
+- _Start point_ or position in the resulted stream of records, from where records should be read.
+- _Filter_ a records filtering condition.
+- _offset_ specify a number of how many records should be skipped from the _start point_. Negative value makes sens and means roll back from the starting point towards to the head of the resulting stream.
+- _limit_ the maximal number of records that can be returned in the request result.
+
+### Tags condition
+_Tags condition_ is a logical expression which identifies which partitions should be selected for the read operation. It could be written in one of the following 2 forms:
+1. Simple form. 
+2. Logical expression form
+
+#### Tags condition. Simple form
+In this form the list of tags, that must be in a partition tags is provided. For example the expression `{name="app1",ip="57.43.3.4"}` means - all partition with both tags `name="app1"` AND `ip="57.43.3.4"`. So partition tagged by `{name="app1",pod="1234",ip="57.43.3.4"}` matches the condition, but the partition with tags `{name="app1",pod="1234"}` does not.
+
+#### Tags condition. Logical expression
+This form allows to specify an expression using boolean `AND`, `OR` and `NOT` conditions. For tags matching logical expressions and some glob comparisons are available. For example, the condition `name like "app*" OR pod="1234"` allows to select all partitions, which have tag `name` with value started from "app", OR a partition with tag `pod="1234"` value.
+
+### Merging result stream
+Tags condition allows to select more than one partition for read. This case the result must be merged. Merge makes sense if reocrds have some field values which could be compared. For example, if Log events are stored in Logrange database, records have mandatory timestamp field, so the resulted stream, which consists of records from both streams, will be merged using the timestamp value. 
+
+![](assets/concepts2.png)
+On the picture there are 2 streams of records are merged by the timestamps values (relative numbers in boxes)
+
+### Records filtering
+Filtering of records could be applied in case of an encoding is used. For example, if Log events are stored in Logrange database, records have mandatory field `msg` which contains the log message. The field could be used in a logical expression to filter some messages. The condition could be `msg contains "ERROR"` what will select only records that contain word 'ERROR' in the message body.
+
+### Position
+Position allows to specify a starting record in the result stream where result set of records should be read. There are 2 special positions 'HEAD' - for reading from the beginning of result stream and 'TAIL' for starting from the last record could be used. If the position is something in the middle of the stream, the value usually is not human readable, has some hash style and can be obtained as a result of some previous read operations.
+
+### Read operation example
+ The following picture visualizes data reading process:
+![](assets/concepts3.png)
+The read operation consists of the following steps:
+1. Read request is received and parsed by Partitions Controller.
+2. 2 Partitions were found, which match to the tags criteria `{name="app1"}`
+3. The result stream could be built by merging the 2 selected partitions
+4. The first record in the result stream has offset -5 records from the tail. 
+5. Result is composed and sent to the client as the read response. The read response contains the position of the next record which could be read from the result stream.
+
 
  
