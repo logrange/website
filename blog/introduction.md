@@ -1,6 +1,7 @@
-## Introducing Logrange
-_May 22, 2019 by Dmitry Spasibenko_
-
+---
+title: Introducing Logrange
+author: by Dmitry Spasibenko_
+----
 
 ### What is Logrange?
 [Logrange](https://github.com/logrange/logrange) is an open-source streaming database for aggregating application logs, metrics, audit logs and other machine-generated data from unlimited number of sources.
@@ -27,7 +28,7 @@ Modern distributed information systems consist of hundreds or even thousands of 
 
 ![](assets/introduction/pic1.png)
 
-The streaming data is generated continuously by thousands of data sources, which typically send in the data records simultaneously, and in small sizes. Despite of the fact that the records are small, due to the number of records the streaming data has very significant volume, which could be counted in hundreds of megabytes per second(!)
+The streaming data is generated continuously by thousands of data sources, which typically sent in the data records simultaneously, and in small sizes. Despite of the fact that the records are small, due to the number of records the streaming data has very significant volume, which could be counted in hundred of megabytes per second(!).
 
 To make an analysis of the distributed system data we have to:
 1. aggregate the machine-generated data 
@@ -36,7 +37,7 @@ To make an analysis of the distributed system data we have to:
 ### Data aggregation problem
 Data aggregation could be a challenge due to the amount of the machine-generated data.
 
-For example, most of log aggregating solutions offer powerful tools like full-text search, which requires data preprocessing (indexing). Data indexing is resource-costly process, so to make the tool be able to work at all, it is asked to reduce amount of the logs to be stored. The full-text search may be not needed at all, but the logs were cut because of the indexing cost. It doesn’t seem very reasonable...
+For example, most of log aggregating solutions offer powerful tools like full-text search, which requires data preprocessing (indexing). Data indexing is a resource-costly process, so to make the tool be able to work at all, it is asked to reduce amount of the logs to be stored. The full-text search may be not needed at all, but the logs were cut because of the indexing cost. It doesn’t seem very reasonable...
 
 ![](assets/introduction/pic2.png)
 
@@ -45,7 +46,7 @@ For example, most of log aggregating solutions offer powerful tools like full-te
 This could make sense if the system is determined and methods of its analysis are known and clear. Unfortunately it is not true, the reality is different, so we are not absolutely sure whether the dropped information is unessential.
 
 ### Data analysis problem
-On the market, there are plenty of tools that work with specific type of the streaming data. For example, some log aggregation solutions focus on collecting, indexing, persisting application logs providing such useful features like search. Another tools focus on working with system metrics. They collect, persist and handle the resources consumption metrics. Alerting on hitting some parameters threshold are very useful features.
+On the market, there are plenty of tools that work with specific type of the streaming data. Some log aggregation solutions focus on collecting, indexing, and persisting application logs providing such useful features like search. And other tools are focused on working with system metrics, which collect, persist and handle the resources consumption metrics. Alerting on hiting some parameters threshold are very useful features.
 
 All of these tools usually provide a "full-stack" functionality for some specific type of data (verticals). It includes data collecting, pre-processing, persisting and providing features to the end user. Such kind of approach complicates distributed system data analysis due to the data integration, which should be done by the end user between different data sources.
 
