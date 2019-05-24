@@ -11,9 +11,10 @@ body.front-page {
 }
 /*** region left-side menu ***/
 .left-side-menu { 
-	background: linear-gradient(180deg, #d1efff 0%, #5ea9e4 100%);	/* background of left-side-menu */
-	width: 15em !important;
-	box-shadow: 2px 2px 7px 1px rgba(0,0,0,0.1);
+	background: linear-gradient(135deg, #def4ff 0%, #75c3ff 100%); /* background of left-side-menu */
+    width: 15em !important;
+    box-shadow: 1px 0px 2px 0px rgba(0,0,0,0.1);
+    padding-top: 0.5em;
 }
 .left-side-menu h6.dropdown-header { /* section name */
 	cursor: pointer;
@@ -37,7 +38,8 @@ body.front-page {
 }
 
 .left-side-menu .dropdown-item:focus, .left-side-menu .dropdown-item:hover { /* hovered menu item */
-	background-color: #AAA;
+	background-color: #0366d6;
+	color: white;
 }
 
 .left-side-menu .dropdown-item.active, .left-side-menu .dropdown-item:active { /* current menu item of section submenu */
