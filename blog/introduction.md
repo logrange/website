@@ -74,3 +74,8 @@ Logrange strives to achieve the following goals:
 - Easy to run and configure.
 
 Logrange allows to persist every machine-generated data in one place with the purpose to perform comprehensive analysis of the data afterwards.
+
+### Talk to us!
+If you want to learn more about Logrange and its use cases, take a look at our [website](https://logrange.io). 
+
+If you need to have all logs from your system in one place, please do not hesitate to [contact us](https://www.logrange.io/#contact-us) or send us an email (mail@logrange.io).
