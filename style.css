@@ -74,6 +74,11 @@ text-transform: uppercase;
 	float:right;
 }
 
+.menu-container {
+	position: relative;
+}
+
+
 .container.content {
 	min-height: calc(100% - 10rem);
 }
@@ -434,6 +439,8 @@ input.form-control:focus, textarea.form-control:focus {
     letter-spacing: 0.2em;
 	padding: 0.25em 0;
 }
+
+
 
 /*** buttons ***/
 .btn.btn-logrange.btn-logrange-primary,
