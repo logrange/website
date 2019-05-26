@@ -243,6 +243,10 @@
 	.menu-shadowed {
 		box-shadow: 0px 10px 7px rgba(0,0,0,0.4);
 	}
+	.level-1-submenu {
+		text-align: left;
+		padding: 0 2em;
+	}
 	.level-2-submenu {
 		text-align: left;
 	}
