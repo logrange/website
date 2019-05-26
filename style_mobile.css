@@ -44,7 +44,12 @@
 
 	.container.front-page > .row.front-page {
 		height: 640px;
+	}
+	
+	.container.docs-page, .container.blog-page, .container.download-page {
+		padding-top: 1em;
 	}	
+	
 	
 	.front-page-intro-block {
 		position: static;
@@ -234,7 +239,6 @@
 	}
 	
 	.menu-container {
-		position: absolute;
 		top: 0;
 		background: white;
 		z-index: 1001;
