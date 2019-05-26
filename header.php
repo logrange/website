@@ -5,11 +5,11 @@
 
 	function left_side_menu($type)
 	{
-		$c = 1;
+		$c = 1; $cm = 1; //counters of active menu section item
 		$menu = [];
 		foreach ($GLOBALS["SETTINGS"] as $section_name=>$data)
 		{
-			if (preg_match_all("/([^.]+)\.([^.]+)/",$section_name,$section_name))
+			if (preg_match_all("/([^.]+)\.([^.]+)/", $section_name, $section_name))
 			{
 				$menu[$section_name[1][0]][$section_name[2][0]] = []; // $section_name[1][0] - page-type; $section_name[2][0] - section of menu
 				foreach ($data as $title=>$link)
@@ -18,52 +18,56 @@
 					$page = array_shift(explode(".", array_pop(explode("/",$link))));
 					$GLOBALS["MENU"]["LINKS"][$section_name[1][0]][$page] = $link;
 					$menu[$section_name[1][0]][$section_name[2][0]][$title]['link'] = $page.".html";
-					if ( !isset($_GET['page']) && ($section_name[1][0] == $type) )
-						$_GET['page'] = $page;
-					if ($page == $_GET['page'])
+					$isCurrentSection = strpos($_SERVER["REQUEST_URI"], "/".$section_name[1][0]."/") === 0;
+					if ($isCurrentSection)
 					{
-						$isCurrentSection = strpos($_SERVER["REQUEST_URI"], "/".$section_name[1][0]."/") !== false;
-						$menu[$section_name[1][0]][$section_name[2][0]][$title]['active'] = true;
-						if ($isCurrentSection) $activeMenuItem = $c;
+						if ( !isset($_GET['page']))
+							$_GET['page'] = $page;
+						if ($page == $_GET['page'])
+						{
+							$menu[$section_name[1][0]][$section_name[2][0]][$title]['active'] = true;
+							$activeMenuItem = [ $c, $cm ];
+						}
 					}
 				}
 			if ($section_name[1][0] == $type) $c++;
+			if ($type == "mobile") $cm++;
 			}
 		}
 		
-		$c = 1;
 		
 		if ($type != "mobile")
 		{
+			$c = 1;
 		
 	?><div class="col-md-3 d-none d-md-flex left-side-menu">
 		<div class="w-100"><?
 		
-		foreach ($menu[$type] as $title=>$menu_data)
-		{
-			if ($title):
-			?><h6 class="dropdown-header<?=$activeMenuItem == $c ? " active" : ""?>"><?=$title?></h6><div><?
-			$c++;
-			endif;
-			foreach ($menu_data as $title=>$data)
+			foreach ($menu[$type] as $title=>$menu_data)
 			{
-				?><a class="dropdown-item<?= $data["active"] ? ' active' : "" ?>" href="<?=SITE_PATH?><?=$type?>/<?= $data["link"] ?>"><?=$title?></a><?
+				if ($title):
+				?><h6 class="dropdown-header<?=$activeMenuItem[0] == $c ? " active" : ""?>"><?=$title?></h6><div><?
+				$c++;
+				endif;
+				foreach ($menu_data as $title=>$data)
+				{
+					?><a class="dropdown-item<?= $data["active"] ? ' active' : "" ?>" href="<?=SITE_PATH?><?=$type?>/<?= $data["link"] ?>"><?=$title?></a><?
+				}
+				?></div><?
 			}
-			?></div><?
-		}
 		
 		?></div>
 	</div><?
 		}
 		
-		$c = 1;
 		if ($type == "mobile") //mobile menu
 		{
+		$cm = 1;
 			?>
 			<div class="w-100 menu-shadowed mt-3 pb-3"><?
 			foreach ($menu  as $page => $page_menu_data)
 			{
-					$isCurrentSection = strpos($_SERVER["REQUEST_URI"], "/".$page."/") !== false;
+					$isCurrentSection = strpos($_SERVER["REQUEST_URI"], "/".$page."/") === 0;
 					?>
 					<h6 class="level-1<?=$isCurrentSection ? " active" : ""?>"><?=$page?></h6>
 					<div class="level-1-submenu" style="display:none"><?
@@ -72,9 +76,9 @@
 							if ($title):
 							?>
 							<hr>
-							<h6 class="level-2<?=$isCurrentSection && ($activeMenuItem === $c) ? " active" : ""?>"><?=$title?></h6><!--<?=$c?>-->
+							<h6 class="level-2<?=$isCurrentSection && ($activeMenuItem[1] === $cm) ? " active" : ""?>"><?=$title?></h6><!--<?=$cm?>-->
 							<div class="level-2-submenu"><?
-							if ($isCurrentSection) $c++;
+							$cm++;
 							endif;
 							foreach ($menu_data as $title=>$data)
 							{
