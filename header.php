@@ -30,8 +30,8 @@
 		}
 		unset ($c);
 		
-	?><div class="col-md-3 d-none d-md-flex left-side-menu">
-		<div class="w-100"><?
+	?><div class="d-none d-md-table-cell left-side-menu">
+		<div><?
 		
 		foreach ($menu[$type] as $title=>$menu_data)
 		{
@@ -52,8 +52,8 @@
 	}
 	function prepare_md($txt) {
 		$txt = preg_replace("/\.md([^a-zA-Z])/",'.html$1',$txt);
-		$txt = preg_replace("/---\r\ntitle: (.+)/i","<h2 class=\"markdown-title\">$1</h2>",$txt);
-		$txt = preg_replace("/author: (.+)\r\n---/i","<h2 class=\"markdown-author\">$1</h2>",$txt);
+		$txt = preg_replace("/---\ntitle:(.+)/i","<h2 class=\"markdown-title\">$1</h2>",$txt);
+		$txt = preg_replace("/author:(.+)\n---/i","<h2 class=\"markdown-author\">$1</h2>",$txt);
 		return $txt;
 	}
 
@@ -94,7 +94,7 @@
 
 <body class="<?=PAGE?>">
 	<?include("nav.php");?>
-	<div class="container content px-0 <?=PAGE?>">
-		<div class="row <?=PAGE?>">
+	<div class="container content px-0 d-table <?=PAGE?>">
+		<div class="row d-table-row <?=PAGE?>">
 		
 		

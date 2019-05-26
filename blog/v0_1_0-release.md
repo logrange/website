@@ -1,8 +1,4 @@
-## Introducing Logrange
-_May 22, 2019 by Dmitry Spasibenko_
-
-
-### Introducing Logrange v0.1.0
+## Introducing Logrange v0.1.0
 We are excited to announce our first official release of [Logrange](https://www.github.com/logrange/logrange). This release introduces the Logrange database along with tools for collecting, aggregating and forwarding application logs.
 
 ### What is Logrange?

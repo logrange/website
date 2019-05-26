@@ -5,9 +5,7 @@
     line-height: 1;
     margin-bottom: 0;
 }
-.markdown-body h2.markdown-author:before {
-	content: 'by ';
-}
+
 .markdown-body h2.markdown-author {
     border: none;
     font-size: 1em;
