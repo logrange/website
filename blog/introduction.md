@@ -4,63 +4,63 @@ author:May 22, 2019 by Dmitry Spasibenko
 ---
 
 ### What is Logrange?
-[Logrange](https://github.com/logrange/logrange) is an open-source streaming database for aggregating application logs, metrics, audit logs and other machine-generated data from unlimited number of sources.
+[Logrange](https://github.com/logrange/logrange) is an open-source streaming database for aggregating application logs, metrics, audit logs and other machine-generated data from thousands of sources.
 
-Logrange is built around the following ideas:
-- Every piece of data is valuable
-- Writing data is cheap no matter the amount
-- One place to store all the data(logs, metrics, audit, etc.)
-- Persisting first, processing later
+Logrange is built upon the following principles:
+- Every piece of data has its value
+- Writing data is inexpensive, regardless of volume It’s convenient to have
+- One place for storing data(logs, metrics, audit, etc.)
+- Store first, process later
 
 There are number of cases where Logrange could be useful:
 - Log data aggregation and search
-- Metrics collecting
-- Security alerting
+- Metrics collection
+- Security alerts
 - Anomalies prediction
 - Incident investigation
 - Hidden problems analysis
 - etc.
 
-Logrange is the game changer in distributed systems health and data analysis. Why? Let's try to look into some details.
+Logrange is a game changer for monitoring the health and integrity of distributed systems. Why? Let's try to look into some details.
  
-### Distributed System health and its analysis
-Modern distributed information systems consist of hundreds or even thousands of components (applications). Each of such components generates some information in a form of application logs. Also there are some metrics which can be monitored and recorded in real-time. The data is called machine-generated data and it has streaming nature.
+### Distributed System Health and its Analysis
+Modern distributed information systems have hundreds or even thousands of the system components(applications). Each component generates information in the form of application logs. There are also some metrics that can be monitored and recorded in real-time, known as machine-generated data, which  are streaming in nature.
 
 ![](assets/introduction/pic1.png)
 
 The streaming data is generated continuously by thousands of data sources, which typically sent in the data records simultaneously, and in small sizes. Despite of the fact that the records are small, due to the number of records the streaming data has very significant volume, which could be counted in hundred of megabytes per second(!).
 
-To make an analysis of the distributed system data we have to:
-1. aggregate the machine-generated data 
-2. analyze the aggregated data in accordance with a selected domain model.
+To properly analyze distributed system data we need to:
+1. aggregate machine-generated data 
+2. tailor our analysis of in accordance with a selected domain model
 
 ### Data aggregation problem
-Data aggregation could be a challenge due to the amount of the machine-generated data.
+Data aggregation becomes more of a challenging with greater volumes of machine-generated data.
 
-For example, most of log aggregating solutions offer powerful tools like full-text search, which requires data preprocessing (indexing). Data indexing is a resource-costly process, so to make the tool be able to work at all, it is asked to reduce amount of the logs to be stored. The full-text search may be not needed at all, but the logs were cut because of the indexing cost. It doesn’t seem very reasonable...
+For example, most log aggregation solutions offer powerful tools like full-text search  that require data preprocessing (indexing). But data indexing is a resource-costly process, so for the tool to function at all, the number of stored logs is reduced. A full-text search may be not needed at all, but logs are cut anyway to avoid potentially high indexing costs. This doesn’t make much sense...
 
 ![](assets/introduction/pic2.png)
 
-> So, the common practice is to select "the most important" information, dropping "unnecessary" one due to cost of the information processing. 
+> The conventional approach is to select "the most important" information and drop "unnecessary" data  expensive so that the expense of information processing can be avoided
 
-This could make sense if the system is determined and methods of its analysis are known and clear. Unfortunately it is not true, the reality is different, so we are not absolutely sure whether the dropped information is unessential.
+This might make sense if the system is predetermined and the methods for its analysis are known and clear. Unfortunately, this is rarely the case, so we can’t be  sure whether the dropped information is truly unnecessary.
 
 ### Data analysis problem
-On the market, there are plenty of tools that work with specific type of the streaming data. Some log aggregation solutions focus on collecting, indexing, and persisting application logs providing such useful features like search. And other tools are focused on working with system metrics, which collect, persist and handle the resources consumption metrics. Alerting on hiting some parameters threshold are very useful features.
+There are plenty of tools on the market designed to work with a specific type of streaming data. For example, some log aggregation solutions focus on collecting, indexing and persisting application logs to provide useful features like search. Other tools are designed to facilitate work with system metrics. They collect, persist and process resource consumption metrics. Providing alerts when a particular parameter reaches a threshold is a very useful feature.
 
-All of these tools usually provide a "full-stack" functionality for some specific type of data (verticals). It includes data collecting, pre-processing, persisting and providing features to the end user. Such kind of approach complicates distributed system data analysis due to the data integration, which should be done by the end user between different data sources.
+All of these tools usually provide "full-stack" functionality for some specific type of data (verticals). This includes data collecting, pre-processing, persisting and providing features to the end user. Such an approach complicates data analysis of a distributed system because the it places the responsibility for integrating data from different sources on the end user.
 
 ![](assets/introduction/pic3.png)
 
-### What does Logrange offer?
-Logrange is built to solve aforementioned problems. 
+### What makes Logrange different?
+Logrange is designed to solve the aforementioned problems. 
 
 ![](assets/introduction/pic4.png)
 
 #### Persisting everything
-Instead of trying to persist only "essential" (we actually never know) data, Logrange persists all the data. Having all the data persisted, different types of processing for different data subsets can be applied. This allows to apply countless methods of data analysis, building different models and gradually approach to understanding the system behavior. 
+Instead of trying to persist only "essential" data (we can never know what is essential), Logrange persists all the data. Having persisted all the data, we can now apply different types of processing to different data subsets. This allows us use a wide array of data analysis methods, build different models and more quickly develop an understanding of system behavior.
 
-> The cost of saving the data is cheap, so if data is really not needed it could be removed anytime.
+> The cost of saving data is very low, if it turns out that some data sets are truly not needed, they could be removed at a later time.
 
 #### Working with different types of data (verticals)
 Having all the data in one place gives an advantage because there is no problem with the data integration from different data sources. For example, Logrange can keep system metrics, application and business logs or any other metrics in its database. Using this approach such tasks like finding correlation between log messages and system metrics could be easily solved.
