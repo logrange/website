@@ -191,7 +191,7 @@ of your system health, monitoring, analytics,anomalies prediction, availability 
 	<div class="container text-center">
 		<div class="row">
 			<div class="col-12">
-				<h2>Get Logrange!</h2>
+				<h2>Get started now!<br>Try Log Aggregation with Logrange!</h2>
 			</div>
 			<div class="col-1 d-none d-sm-flex"></div>
 			<div class="col-12 col-sm-5">
