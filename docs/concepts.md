@@ -2,11 +2,10 @@
 This document contains main concepts which are essential to understand how Logrange works. 
  
 ## Introduction to Logrange database
-Logrange is a streaming database. The "streaming database" part in this phrase means that Logrange is intended to work with streams of records.
+Logrange is a streaming database. The "streaming database" part in this phrase means that Logrange is intended to work with streams of records. Logrange works with big amount of records from thousands of sources. The database functionality is optimized for serving intensive read-write traffic.
 
-A stream is a sequence of records, which is persisted in a partition. Partition is like a table in relational database, but with immutable records. Logrange allows to keep data in tens of thoursands of partitions and it is optimized for adding new records in fast and efficient manner. 
+A stream is a sequence of records, which is persisted in a partition. Partition is like a table in relational database, but with immutable records. Logrange allows to keep data in tens of thousands of partitions and it is optimized for adding new records in fast and efficient manner.  
 
- 
 ## Data record
 Data record is an array of bytes. The size of record (number of bytes in the array) could be in the range `[0..16384]` (up to 16KB). A record could be 0 length.
  
