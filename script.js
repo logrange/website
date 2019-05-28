@@ -12,12 +12,37 @@ $(".left-side-menu a").on("click", function() {
 $("#copy2clipboard").on("mouseup", setClipboard);
 
 $("h6.dropdown-header").on({
-		"click" : function() {
-			$("h6.dropdown-header").removeClass("active");
-			$(this).addClass("active");
-		}
+	"click" : function() {
+		$("h6.dropdown-header").removeClass("active");
+		$(this).addClass("active");
+	}
 });
-
+// mobile menu
+$("h6.level-1").on({
+	"click" : function() {
+		$("h6.level-1").removeClass("active");
+		$(this).addClass("active");
+	}
+});		
+$("h6.level-2").on({
+	"click" : function() {
+		$("h6.level-2").removeClass("active");
+		$(this).addClass("active");
+	}
+});
+$("button.navbar-toggler").on({
+	"click" : function() {
+		$(".screen-shadow").toggle();
+	}
+});
+$(".screen-shadow").on({
+	"click" : function() {
+		$(".navbar.top-navbar .navbar-toggler").attr("aria-expanded", "false");
+		$(".screen-shadow").toggle();
+		$(".navbar-collapse.collapse").removeClass("show");
+	}
+});
+		
 function setClipboard(){
     var id = "_tmp";
     var existsTextarea = document.getElementById(id);

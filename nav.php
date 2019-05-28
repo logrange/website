@@ -11,17 +11,17 @@
 
 <nav class="navbar top-navbar navbar-expand-sm navbar-light">
 	<div class="container">
-		<div class="position-relative w-100 text-center text-sm-left">
+		<div class="w-100 text-center text-sm-left menu-container">
 			<a class="navbar-brand mr-0" href="<?=SITE_PATH?>">
 				<img src="<?=SITE_PATH?>images/logo.svg" class="non-mobile-only">
 				<img src="<?=SITE_PATH?>images/logo-butterfly.svg" class="mobile-only">
 			</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation">
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 			</button>
 
 			<div class="navbar-collapse collapse" id="navbarSupportedContent" style="">
-				<div class="navbar-menu">
+				<div class="navbar-menu non-mobile-only">
 				<ul class="navbar-nav">
 					<li class="nav-item">
 					<a class="nav-link<?=$docs_class?>" href="<?=SITE_PATH?>docs/">Docs</a>
@@ -39,6 +39,11 @@
 					<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
 				</form>
 				*/?>
+				</div>
+				<div class="navbar-menu mobile-only">
+					<?
+						left_side_menu("mobile");
+					?>				
 				</div>
 			</div>
 		</div>
