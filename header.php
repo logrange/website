@@ -133,6 +133,15 @@
 	<link rel="stylesheet" href="<?=SITE_PATH?>style.css">
 	<link rel="stylesheet" href="<?=SITE_PATH?>style_mobile.css">
 	<link rel="stylesheet" href="<?=SITE_PATH?>style_markdown.css">
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-140973891-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-140973891-1');
+    </script>
 </head>
 
 <body class="<?=PAGE?>">
