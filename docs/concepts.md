@@ -2,7 +2,7 @@
 This document contains main concepts which are essential to understand how Logrange works. 
  
 ## Introduction to Logrange database
-Logrange is streaming database. The _streaming database_ phrase means that Logrange is intended to work with streams of records. It is optimized to work with streams of data and comparing to _traditional databases_, Logrange provides very limited number of data operations.
+Logrange is a streaming database. The "streaming database" part in this phrase means that Logrange is intended to work with streams of records.
 
 A stream is a sequence of records, which is persisted in a partition. Partition is like a table in relational database, but with immutable records. Logrange allows to keep data in tens of thoursands of partitions and it is optimized for adding new records in fast and efficient manner. 
 
@@ -138,3 +138,6 @@ The read operation consists of the following steps:
 3. The result stream could be built by merging the 2 selected partitions
 4. The first record in the result stream has offset -5 records from the tail. 
 5. Result is composed and sent to the client as the read response. The read response contains the position of the next record which could be read from the result stream.
+
+
+ 
