@@ -1,4 +1,4 @@
-The `TRUNCATE` allows to remove part or ALL data from one or many partitions:
+`TRUNCATE` allows to remove part or ALL data from one or many partitions:
 ```
 TRUNCATE 
     [DRYRUN] 
