@@ -429,6 +429,8 @@ class Parsedown
             return;
         }
         $text = trim($text, ' ');
+		$anchor = strtolower(str_replace(" ", "-" , $text));
+		$text = '<a id="'.$anchor.'"></a>'.$text;
         $Block = array(
             'element' => array(
                 'name' => 'h' . $level,
