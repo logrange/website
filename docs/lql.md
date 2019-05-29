@@ -7,6 +7,7 @@ To understand LQL it is good to know the Logrange [concepts](concepts.md)
 LQL supposes that every record in database has 2 mandatory fields:
 - _ts_ - record timestamp
 - _msg_ - record message. A text field which contains message associated with the record
+
 A record may contain optional fields, chich could be specified in key-value form. For example `field1="abc"`
 
 ## Statements

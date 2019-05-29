@@ -14,10 +14,9 @@
 `SELECT` statement allows to read records from one or multiple partitions. The records will appear in the result stream in the order, they were appended to the partition(s). If the result stream contains records from multiple partitions the meging procedure will be applied:
 1. repeat until at least one non-empty partition
 2. current record timestamp from a partition is compared with a current record of any other partition
-2. record from the partition with the lowest current record timestamp is selected and placed to result stream. Next record for the partition becomes current. Go to step 1.
+2. record from the partition with the lowest current record timestamp is selected and placed to result stream. Next record for the partition becomes current. Go to the Step#1
 
 Records from the result stream could be filtered. Also, the `SELECT` statement allows to specify starting read position and the number of records expected to be in the result stream.
-Check [Examples](#examples)
 
 ### Formatting records 
 The `<format string>` is a template for formatting records in the result. The template should be placed in double quotes with variables placed in curly braces. The curly braces `{` and `}` could be escaped by `{{` for `{` and `{}` for `}`.
@@ -31,7 +30,7 @@ For example, the template `"Record content: {msg}\n"` will put the prefix `"Reco
 `vars` - record tags and optional fields put together<br/>
 `vars:<name>` - record _field_ or _tag_ value given by the name provided<br/>
 
-__Example__: `"{ts:2006-01-02} {vars:source} {{{msg}{}"`
+__Example__: `"{ts:2006-01-02} {vars:source} {{{msg}{}"`<br/>
 __Default value__: `"{msg}\n"`
 
 ### Selecting partitions
@@ -51,7 +50,7 @@ The following operations are allowed to check a tag value: `<`, `>`, `<=`, `>=`,
 `LIKE` uses [Glob conventions](https://golang.org/pkg/path/filepath/#Match) to test a tag value. 
 `CONTAINS` is used for testing whether the tag value contains provided text or not.
 
-__Example__: `name Like "application*" OR name = "app1"`
+__Example__: `name Like "application*" OR name = "app1"`<br/>
 __Default value__: `` - empty string, which means to select ALL partitions.
 
 ### Specifying time-interval
@@ -95,7 +94,7 @@ The following operations allowed to be used with optional record fields values:
 `>=` the filed value is equal or greater than the text provided  
 `<=` the filed value is equal or less than the text provided  
 
-__Example__: `WHERE ts contains "ERROR" or fields:id="1234"`
+__Example__: `WHERE ts contains "ERROR" or fields:id="1234"`<br/>
 __Default value__: `` - empty string, no filter, accepting all records.
 
 ### Specifying the start position 
@@ -108,7 +107,7 @@ __Default value__: `head`
 ### Skipping records from the start position
 The `OFFSET` statement allows to skip the `<number>` of records from the _start position_, berfore placing them into the result stream. The `<number>` could be negative, what means skip the absolute number of records towards to the head of stream before starting to read them. 
 
-__Example__: `... POSITION tail OFFSET -10 ...` literally means the following - to set position to the tail of the stream; then, to skip 10 records shifting the start position towards to the head and to start read from there... In short  - to read last 10 records from the stream.
+__Example__: `... POSITION tail OFFSET -10 ...` literally means the following - to set position to the tail of the stream; then, to skip 10 records shifting the start position towards to the head and to start read from there... In short  - to read last 10 records from the stream.<br/>
 __Default value__: 0 - no offset
 
 ### Limiting result 
