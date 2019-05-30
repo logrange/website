@@ -1,7 +1,6 @@
 <?
 	$GLOBALS["SETTINGS"] = parse_ini_file($_SERVER["DOCUMENT_ROOT"]."/settings.ini", true);
 	define("SITE_PATH", getFullServerName());
-	
 
 	function left_side_menu($type)
 	{
@@ -14,10 +13,14 @@
 				$menu[$section_name[1][0]][$section_name[2][0]] = []; // $section_name[1][0] - page-type; $section_name[2][0] - section of menu
 				foreach ($data as $title=>$link)
 				{
-					if ( substr($link, 0, 1) == "/" ) $link = $_SERVER["DOCUMENT_ROOT"]."/".$link; //if relative path - doc is on server
-					$page = array_shift(explode(".", array_pop(explode("/",$link))));
-					$GLOBALS["MENU"]["LINKS"][$section_name[1][0]][$page] = $link;
-					$menu[$section_name[1][0]][$section_name[2][0]][$title]['link'] = $page.".html";
+					if ( substr($link, 0, 1) == "/" ) $link = $_SERVER["DOCUMENT_ROOT"].$link; //if relative path - doc is on server
+					$root_link = array_shift(explode('#',$link));
+					$link_parts = explode(".", array_pop(explode("/",$link)));
+					$anchor = explode("#", $link_parts[1]);
+					$anchor =  (count($anchor) == 2) ? "#".$anchor[1] : "";
+					$page = $link_parts[0];
+					$GLOBALS["MENU"]["LINKS"][$section_name[1][0]][$page] = $root_link;
+					$menu[$section_name[1][0]][$section_name[2][0]][$title]['link'] = $page.".html".$anchor;
 					$isCurrentSection = strpos($_SERVER["REQUEST_URI"], "/".$section_name[1][0]."/") === 0;
 					if ($isCurrentSection)
 					{
