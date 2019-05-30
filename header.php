@@ -28,7 +28,6 @@
 							$_GET['page'] = $page;
 						if ($page == $_GET['page'])
 						{
-							$menu[$section_name[1][0]][$section_name[2][0]][$title]['active'] = true;
 							$activeMenuItem = [ $c, $cm ];
 						}
 					}
@@ -54,7 +53,7 @@
 				endif;
 				foreach ($menu_data as $title=>$data)
 				{
-					?><a class="dropdown-item<?= $data["active"] ? ' active' : "" ?>" href="<?=SITE_PATH?><?=$type?>/<?= $data["link"] ?>"><?=$title?></a><?
+					?><a class="dropdown-item" href="<?=SITE_PATH?><?=$type?>/<?= $data["link"] ?>"><?=$title?></a><?
 				}
 				?></div><?
 			}
@@ -85,7 +84,7 @@
 							endif;
 							foreach ($menu_data as $title=>$data)
 							{
-								?><a class="dropdown-item<?= $data["active"] ? ' active' : "" ?>" href="<?=SITE_PATH?><?=$page?>/<?= $data["link"] ?>"><?=$title?></a><?
+								?><a class="dropdown-item" href="<?=SITE_PATH?><?=$page?>/<?= $data["link"] ?>"><?=$title?></a><?
 							}
 							?></div><?
 						}
@@ -94,7 +93,11 @@
 			}
 			?></div><?
 		}
-		
+		?>
+		<script>//setting active menu
+			$("a[href='" + document.location.href +"']").addClass("active");
+		</script>
+		<?
 	}
 	function prepare_md($txt) {
 		$txt = preg_replace("/\.md([^a-zA-Z])/",'.html$1',$txt);
@@ -145,7 +148,7 @@
 	<link rel="stylesheet" href="<?=SITE_PATH?>style.css">
 	<link rel="stylesheet" href="<?=SITE_PATH?>style_mobile.css">
 	<link rel="stylesheet" href="<?=SITE_PATH?>style_markdown.css">
-	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 
 <body class="<?=PAGE?>">
