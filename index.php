@@ -274,7 +274,6 @@ of your system health, monitoring, analytics,anomalies prediction, availability 
 				<p>Do you want to have something like anomalies prediction?</p>
 				<p>Or may be you want to improve your system monitoring and analytics...</p>
 				<p>Contact us and let us help you to resolve this problems.</p>
-
 			</div>
 			<div class="col-12 col-sm-5">
 				<h4 id="formInfo" class="w-100 text-center"></h4>
@@ -283,7 +282,8 @@ of your system health, monitoring, analytics,anomalies prediction, availability 
 					<input type="text" class="form-control" placeholder="Your email" name="email" required pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$">
 					<textarea class="form-control mb-3" placeholder="Say hello..." name="message" minlength="10" maxlength="5000" required></textarea>
 					<div class="button-container">
-						<button class="btn btn-logrange btn-logrange-primary submit-button">Send message</button>
+						<a href="https://github.com/logrange/logrange#quick-start" class="btn btn-logrange btn-logrange-primary-alt d-inline-block"><svg class="room-menu-options__item-logo-icon mr-3" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 18 25" style="height:1.5em"><rect x="15" y="5" width="2" height="10"></rect><rect x="10" y="5" width="2" height="20"></rect><rect x="5" y="5" width="2" height="20"></rect><rect width="2" height="15"></rect></svg>Join gitter chat room</a>
+						<button class="btn btn-logrange btn-logrange-primary submit-button float-right">Send message</button>
 					</div>
 				</form>
 			</div>
