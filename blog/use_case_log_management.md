@@ -38,7 +38,7 @@ Taking all the above into account, we at Logrange developed a set of auxiliary t
 
 ![](assets/usecases/logmanagement/how_it_works.png)
 
-The solution has the following key components (marked with **(*)** on the diagram above):
+The solution has the following key components (marked with asterisk (*) on the diagram above):
 
 - **LogCollector** - logs collecting agent, collects log data **(A)** on a given source (node, VM, container) and sends it **(B)** to LograngeDB;
 
