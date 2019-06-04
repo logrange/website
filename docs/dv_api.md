@@ -99,4 +99,4 @@ go build -o read-write ./examples/read-write
 go build -o streaming-read ./examples/streaming-read
 ```
 
-Use the 2 executables `read-write` and `streaming-read` to see how it works. You need to have Logrange server up and running in its default configuration for listening clients requests on `127.0.0.1:9966`
+Use the 2 executables `read-write` and `streaming-read` to see how it works. You need to have Logrange server unning in its default configuration for listening clients requests on `127.0.0.1:9966`. 
