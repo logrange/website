@@ -4,6 +4,7 @@
 .menu-container {
 	position: static;
 }
+
 @media (max-width: 767px) {
 	body.front-page {
 		background: none;
@@ -29,6 +30,7 @@
 		z-index: 1002;
 		border: none;
 		outline: none !important;
+		top: 8px;
 	}
 	.navbar.top-navbar .navbar-toggler[aria-expanded="true"] {
 		box-shadow: 0px 0px 4px 0px rgba(0,200,255,0.3);
@@ -36,6 +38,35 @@
 	.navbar.top-navbar .navbar-brand img {
 		margin-top: 0.5em;
 	}
+	/*** region collapsing ***/
+    .navbar-header {
+        float: none;
+    }
+    .navbar-toggler {
+        display: block;
+    }
+    .navbar-collapse {
+        border-top: 1px solid transparent;
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+    .navbar-collapse.collapse {
+        display: none!important;
+    }
+    .navbar-collapse.collapse.show {
+        display: block!important;
+    }
+    .navbar-nav {
+        float: none!important;
+        margin: 7.5px -15px;
+    }
+    .navbar-nav>li {
+        float: none;
+    }
+    .navbar-nav>li>a {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+	/*** end region ***/
 	
 	.container.front-page {
 		background-position-x: 90%;
@@ -249,10 +280,41 @@
 	}
 	.level-1-submenu {
 		text-align: left;
-		padding: 0 2em;
 	}
 	.level-2-submenu {
 		text-align: left;
+	}
+	h6.level-2, h6.level-2.active + .level-2-submenu {
+		border-bottom: 1px solid #EEE;
+	}
+	h6.level-2 {
+		color: #555;
+		font-size: 1.2rem;
+		font-weight: bold;
+		cursor: pointer;
+	}
+	h6.level-2.active {
+		border: none;
+	}
+	h6.level-2::after {
+		content: '';
+		width: 0.7em;
+		height: 0.7em;
+		background-image: url(/images/arrow_right.svg);
+		background-size: contain;
+		position: absolute;
+		right: 1em;
+		margin-top: 0.6em;
+	}
+	h6.level-2.active::after {
+		background-image: url(/images/arrow_down.svg);
+	}
+	h6.level-2,
+	h6.level-2 + .level-2-submenu {
+		padding: 0.2em 1em;
+	}
+	h6.level-1	{
+		font-size: 1.3rem;
 	}
 	h6.level-1, h6.level-2, .level-1-submenu a, .level-2-submenu a {
 		margin-bottom: 0;
@@ -269,6 +331,9 @@
 	h6.level-2.active + .level-2-submenu {
 		display: block !important;
 	}
+	h6.level-2.active + .level-2-submenu {
+		padding-bottom: 1em;
+	}
 	h6.level-1 {
 		text-transform: uppercase;
 	}
@@ -276,24 +341,32 @@
 		color: #333;
 		font-weight: bold
 	}
-	.menu-shadowed hr {
-		width: 100px;
-		border-color: #00C8FF;
-	}
-	.menu-shadowed hr:last-child {
-		display: none;
-	}
-	.level-1-submenu hr {
-		width: 50px;
-		border-color: #999;
-	}
 	.level-2-submenu a {
-		font-size: 1.4em;
+		font-size: 1.3em;
 		line-height: 1.5;
+		font-weight: bold;
+		opacity: 0.7;
 	}
-	h6.level-2 + hr {
-		width: 50px;
-		border: 1px dashed #DDD;
+	.level-2-submenu a:focus,
+	.level-2-submenu a:active,
+	.level-2-submenu a.active {
+		background: transparent;
+		color: #00A4F9;
+	}
+	.search-form-container input.form-control {
+		font-size: 1rem;
+		padding-left: 1em;
+		border-color: #EEE !important;
+	}
+	.search-form-container span.input-group-text::before {
+		width: 1rem;
+		height: 1rem;
+	}
+	.page-title-content {
+		font-size: 2rem;
+	}
+	.page-title-container {
+		height: 150px;
 	}
 	
 }

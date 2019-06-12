@@ -35,13 +35,14 @@ $("button.navbar-toggler").on({
 		$(".screen-shadow").toggle();
 	}
 });
-$(".screen-shadow").on({
+$(".screen-shadow, .level-2-submenu a").on({
 	"click" : function() {
 		$(".navbar.top-navbar .navbar-toggler").attr("aria-expanded", "false");
 		$(".screen-shadow").toggle();
 		$(".navbar-collapse.collapse").removeClass("show");
 	}
 });
+
 		
 function setClipboard(){
     var id = "_tmp";

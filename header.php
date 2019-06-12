@@ -77,7 +77,18 @@
 		{
 		$cm = 1;
 			?>
-			<div class="w-100 menu-shadowed mt-3 pb-3"><?
+			<div class="w-100 menu-shadowed mt-3 pb-3">
+				<div class="search-form-container">
+					<form action="<?=SITE_PATH?>search/">
+						<div class="input-group">
+						  <input type="text" class="form-control" aria-label="Search" placeholder="Search in <?=PAGE?>">
+						  <div class="input-group-append">
+							<span class="input-group-text"><i class="fa fa-zoom"></i></span>
+						  </div>
+						</div>
+					</form>
+				</div>	
+			<?
 			foreach ($menu  as $page => $page_menu_data)
 			{
 					$isCurrentSection = strpos($_SERVER["REQUEST_URI"], "/".$page."/") === 0;
@@ -88,7 +99,6 @@
 						{
 							if ($title):
 							?>
-							<hr>
 							<h6 class="level-2<?=$isCurrentSection && ($activeMenuItem[1] === $cm) ? " active" : ""?>"><?=$title?></h6><!--<?=$cm?>-->
 							<div class="level-2-submenu"><?
 							$cm++;
@@ -100,7 +110,7 @@
 							?></div><?
 						}
 					?></div>
-					<hr><?
+					<?
 			}
 			?></div><?
 		}

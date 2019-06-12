@@ -461,7 +461,6 @@ h3 {
 }
 
 .top-navbar .active, .footer .active {
-	color: red;
 	pointer-events: none;
 	cursor: default;	
 }
