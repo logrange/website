@@ -42,8 +42,19 @@
 		{
 			$c = 1;
 		
-	?><div class="d-none d-md-table-cell left-side-menu">
-		<div><?
+	?><div class="d-none d-md-block left-side-menu col-md-3 pr-0">
+		<div class="search-form-container">
+			<form action="<?=SITE_PATH?>search/">
+				<div class="input-group">
+				  <input type="text" class="form-control" aria-label="Search" placeholder="Search in <?=PAGE?>">
+				  <div class="input-group-append">
+					<span class="input-group-text"><i class="fa fa-zoom"></i></span>
+				  </div>
+				</div>
+			</form>
+		</div>	
+	
+		<div class="left-side-menu-items"><?
 		
 			foreach ($menu[$type] as $title=>$menu_data)
 			{
@@ -96,6 +107,7 @@
 		?>
 		<script>//setting active menu
 			$("a[href='" + document.location.href +"']").addClass("active");
+			$(".page-title-content").html($("a[href='" + document.location.href +"']").html());
 		</script>
 		<?
 	}
@@ -120,7 +132,7 @@
 		return $protocol."://".$_SERVER["HTTP_HOST"]."/";
 	}
 	
-	if (PAGE != "front-page") {
+	if (PAGE != "front") {
 		require_once ($_SERVER["DOCUMENT_ROOT"]."/Parsedown.php");
 		$Parsedown = new Parsedown();
 	}
@@ -151,10 +163,26 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 
-<body class="<?=PAGE?>">
+<body class="<?=PAGE."-page"?>">
 	<div class="screen-shadow"></div>
 	<?include("nav.php");?>
-	<div class="container content px-0 d-table <?=PAGE?>">
-		<div class="row d-table-row <?=PAGE?>">
+	<?if (PAGE != "front"):?>
+	<div class="container-fluid page-title-container">
+		<div class="row">
+			<div class="col-12 col-md-9 offset-md-3 page-title">
+				<div class="page-title-content">
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container-fluid content <?=PAGE."-page"?>">
+		<div class="row <?=PAGE."-page"?>">
+	<?else: //front-page?>
+	<div class="container content px-0 d-table <?=PAGE."-page"?>">
+		<div class="row d-table-row <?=PAGE."-page"?>">		
+		
+		
+		
+	<?endif;?>
 		
 		

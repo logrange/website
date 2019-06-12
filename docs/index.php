@@ -1,4 +1,4 @@
-<?define ("PAGE", "docs-page");?>
+<?define ("PAGE", "docs");?>
 <?include($_SERVER["DOCUMENT_ROOT"]."/header.php");?>
 
 		<?
@@ -7,7 +7,7 @@
 
 	<div class="col-12 col-md-9 markdown-body">
 		<?
-		echo $Parsedown->text(prepare_md(file_get_contents($GLOBALS["MENU"]["LINKS"]["docs"][$_GET['page']])));	
+		echo $Parsedown->text(prepare_md(file_get_contents($GLOBALS["MENU"]["LINKS"][PAGE][$_GET['page']])));	
 		?>
 	</div>
 

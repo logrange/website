@@ -1,4 +1,4 @@
-<?define ("PAGE", "front-page");?>
+<?define ("PAGE", "front");?>
 <?checkFeedback();?>
 <?include($_SERVER["DOCUMENT_ROOT"]."/header.php");?>
 
