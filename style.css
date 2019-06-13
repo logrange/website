@@ -1,4 +1,9 @@
-@import url('https://fonts.googleapis.com/css?family=Nunito+Sans|Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Nunito+Sans&display=swap');
+@font-face {
+    font-family: "Nunito Sans ExtraLight";
+    src: local('Nunito Sans ExtraLight'), url(/assets/fonts/NunitoSans-ExtraLight.ttf);
+}
+
 
 body {
 	font-family: 'Nunito Sans', sans-serif;
@@ -154,7 +159,7 @@ body.front-page {
 	position: absolute;
     opacity: 0.6;
     color: rgba(51,70,102,0.9);
-    font-family: "Roboto ExtraLight";
+    font-family: "Nunito Sans ExtraLight";
     font-size: 4rem;
     bottom: 2rem;
     margin-left: 2rem;
