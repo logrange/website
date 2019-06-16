@@ -2,19 +2,23 @@
 <?checkFeedback();?>
 <?include($_SERVER["DOCUMENT_ROOT"]."/assets/inc/header.php");?>
 
-<div class="front-page-intro-block">
+<div class="front-page-intro-block pl-lg-4 pl-xl-0">
 <h1>Logrange</h1>
 <h2>streaming database</h2>
 <p>Logrange is highly performant streaming database for aggregating data like application logs, system metrics, audit logs etc. from thousands of sources.</p>
 <div class="button-container">
+	<div class="d-inline-block d-sm-block d-lg-inline-block">
 	<a href="#get-logrange" class="btn btn-logrange btn-logrange-primary d-inline-block mr-3 float-left smooth-scroll">Get started</a>
+	</div>
+	<div class="d-inline-block d-sm-block d-lg-inline-block">
 	<a href="https://github.com/logrange/logrange" class="btn btn-logrange btn-logrange-outline d-inline-block float-left"><div class="github-logo non-mobile-only"></div>View on github</a>
+	</div>
 </div>
 </div>
 
 
 </div><?//end of intro-block-container?>
-<div class="container"><?//and new container and raw?>
+<div class="container working-with-streams-container-container"><?//and new container and raw?>
 	<div class="row working-with-streams-container position-relative">
 	<div class="working-with-streams text-center px-5">
 		<h2>Designed for working with streams</h2>
@@ -194,12 +198,14 @@ of your system health, monitoring, analytics,anomalies prediction, availability 
 				<h2>Get started now!<br>Try Log Aggregation with Logrange!</h2>
 			</div>
 			<div class="col-1 d-none d-sm-flex"></div>
-			<div class="col-12 col-sm-5">
+			<div class="col-12 col-lg-5">
 			<p class="get-logrange-intro mb-4 text-center text-sm-left d-inline-block d-sm-block">Logrange master branch is under active development and it is not production ready yet.<br>
 <br>It is 100% open-source, so you can</p>
-                <a href="https://github.com/logrange/logrange#quick-start" class="btn btn-logrange btn-logrange-primary-alt d-inline-block float-sm-left"><div class="github-logo"></div>Try It Right Now</a>
+				<div class="try-it-button-container text-center">
+					<a href="https://github.com/logrange/logrange#quick-start" class="btn btn-logrange btn-logrange-primary-alt d-inline-block float-lg-left"><div class="github-logo"></div>Try It Right Now</a>
+				</div>
 			</div>
-			<div class="col-12 col-sm-6">
+			<div class="col-12 col-lg-6">
 				<div class="screen">
 					<div class="tabs">
 						<ul class="nav nav-tabs" role="tablist" id="screenTabs">
@@ -274,6 +280,7 @@ of your system health, monitoring, analytics,anomalies prediction, availability 
 				<p>Do you want to have something like anomalies prediction?</p>
 				<p>Or may be you want to improve your system monitoring and analytics...</p>
 				<p>Contact us and let us help you to resolve this problems.</p>
+				<a href="https://gitter.im/logrange/community" class="btn btn-logrange btn-link d-inline-block"><svg class="room-menu-options__item-logo-icon mr-3" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 18 25" style="height:1.5em"><rect x="15" y="5" width="2" height="10"></rect><rect x="10" y="5" width="2" height="20"></rect><rect x="5" y="5" width="2" height="20"></rect><rect width="2" height="15"></rect></svg>Join gitter chat room</a>
 			</div>
 			<div class="col-12 col-sm-5">
 				<h4 id="formInfo" class="w-100 text-center"></h4>
@@ -282,7 +289,6 @@ of your system health, monitoring, analytics,anomalies prediction, availability 
 					<input type="text" class="form-control" placeholder="Your email" name="email" required pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$">
 					<textarea class="form-control mb-3" placeholder="Say hello..." name="message" minlength="10" maxlength="5000" required></textarea>
 					<div class="button-container">
-						<a href="https://gitter.im/logrange/community" class="btn btn-logrange btn-logrange-primary-alt d-inline-block"><svg class="room-menu-options__item-logo-icon mr-3" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 18 25" style="height:1.5em"><rect x="15" y="5" width="2" height="10"></rect><rect x="10" y="5" width="2" height="20"></rect><rect x="5" y="5" width="2" height="20"></rect><rect width="2" height="15"></rect></svg>Join gitter chat room</a>
 						<button class="btn btn-logrange btn-logrange-primary submit-button float-right">Send message</button>
 					</div>
 				</form>

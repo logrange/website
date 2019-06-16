@@ -1,0 +1,66 @@
+@media (min-width: 576px) and (max-width: 991px) {
+	.container.front-page {
+		background-position-x: left;
+	}
+	.front-page-intro-block {
+		right: 37%;
+	}
+	.front-page-intro-block h1 {
+		font-size: 3.5em;
+	}
+	.front-page-intro-block .button-container {
+		margin-top: 1em;
+	}		
+	.front-page-intro-block .button-container a {
+		width: 18em;
+		clear: both;
+	}
+	.front-page-intro-block .button-container > div, .try-it-button-container {
+		height: 4em;
+	}
+	.container.working-with-streams-container-container {
+		max-width: 100%;
+	}
+	.working-with-streams h2 {
+		margin-top: 1.8em;
+	}
+	.get-logrange {
+		height: auto;
+	}
+	.get-logrange h2 {
+		margin-bottom: 0.8em;
+	}
+	.try-it-button-container {
+		text-align: center;
+	}
+	.get-logrange .tab-info {
+		width: auto;
+		margin-right: 2.5em;
+		margin-left: 2.5em;
+	}
+	.get-logrange .screen {
+		border-radius: 0.5em 0.5em 0 0;
+		width: auto;
+	}
+	.contact-us p {
+		font-size: 0.9em;
+	}
+	
+}
+@media (min-width: 576px) and (max-width: 767px) {
+	.container.front-page {
+		background-position-x: right;
+	}
+	.front-page-intro-block {
+		margin-top: 70px;
+	}
+	
+}
+
+
+@media (min-width: 768px) and (max-width: 991px) {
+	.working-with-streams-container {
+		height: 50em;
+	}
+}
+
