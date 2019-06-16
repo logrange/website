@@ -13,8 +13,7 @@
 	<div class="container">
 		<div class="w-100 text-center text-sm-left menu-container">
 			<a class="navbar-brand mr-0" href="<?=SITE_PATH?>">
-				<img src="<?=SITE_PATH?>images/logo.svg" class="non-mobile-only">
-				<img src="<?=SITE_PATH?>images/logo-butterfly.svg" class="mobile-only">
+				<img src="<?=SITE_PATH?>images/logo.svg">
 			</a>
 			<button class="navbar-toggler d-sm-block d-md-none" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
