@@ -300,14 +300,14 @@
 		content: '';
 		width: 0.7em;
 		height: 0.7em;
-		background-image: url(/images/arrow_right.svg);
+		background-image: url(../../images/arrow_right.svg);
 		background-size: contain;
 		position: absolute;
 		right: 1em;
 		margin-top: 0.6em;
 	}
 	h6.level-2.active::after {
-		background-image: url(/images/arrow_down.svg);
+		background-image: url(../../images/arrow_down.svg);
 	}
 	h6.level-2,
 	h6.level-2 + .level-2-submenu {

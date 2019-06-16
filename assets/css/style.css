@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Nunito+Sans&display=swap');
 @font-face {
     font-family: "Nunito Sans ExtraLight";
-    src: local('Nunito Sans ExtraLight'), url(/assets/fonts/NunitoSans-ExtraLight.ttf);
+    src: local('Nunito Sans ExtraLight'), url(../fonts/NunitoSans-ExtraLight.ttf);
 }
 
 
@@ -65,14 +65,14 @@ body.front-page {
 	content: '';
     width: 0.7em;
     height: 0.7em;
-    background-image: url(/images/arrow_right.svg);
+    background-image: url(../../images/arrow_right.svg);
     background-size: contain;
     position: absolute;
     right: 1em;
 	margin-top: 0.3em;
 }
 .left-side-menu h6.dropdown-header.active::after {
-    background-image: url(/images/arrow_down.svg);
+    background-image: url(../../images/arrow_down.svg);
 }
 .left-side-menu .dropdown-item {
 	line-height: 1.75;
@@ -135,7 +135,7 @@ body.front-page {
 }
 .search-form-container span.input-group-text::before {
 	content: '';
-	background-image: url('/images/search.svg');
+	background-image: url('../../images/search.svg');
 	background-size: contain;
 	width: 1em;
 	height: 1em;
@@ -266,7 +266,7 @@ text-transform: uppercase;
 	font-size: 1em;
 }
 .container.front-page {
-	background: url(images/front-page-bg.svg);
+	background: url(../../images/front-page-bg.svg);
     height: 670px;
     background-position-y: 0;
     background-position-x: right;
@@ -505,7 +505,7 @@ h3 {
 .github-logo {
     width: 2em;
     height: 2em;
-    background: url(images/github_logo.svg);
+    background: url(../../images/github_logo.svg);
     background-size: 2em 2em;
     display: inline-block;
     float: left;

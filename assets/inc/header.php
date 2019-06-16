@@ -143,7 +143,7 @@
 	}
 	
 	if (PAGE != "front") {
-		require_once ($_SERVER["DOCUMENT_ROOT"]."/Parsedown.php");
+		require_once ($_SERVER["DOCUMENT_ROOT"]."/assets/inc/Parsedown.php");
 		$Parsedown = new Parsedown();
 	}
 
@@ -167,9 +167,9 @@
 	<meta name="description" content="Logrange Streaming Database.">
 	<title>Logrange Streaming Database.</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-	<link rel="stylesheet" href="<?=SITE_PATH?>style.css">
-	<link rel="stylesheet" href="<?=SITE_PATH?>style_mobile.css">
-	<link rel="stylesheet" href="<?=SITE_PATH?>style_markdown.css">
+	<link rel="stylesheet" href="<?=SITE_PATH?>assets/css/style.css">
+	<link rel="stylesheet" href="<?=SITE_PATH?>assets/css/style_mobile.css">
+	<link rel="stylesheet" href="<?=SITE_PATH?>assets/css/style_markdown.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 

@@ -1,5 +1,5 @@
 <?define ("PAGE", "blog");?>
-<?include($_SERVER["DOCUMENT_ROOT"]."/header.php");?>
+<?include($_SERVER["DOCUMENT_ROOT"]."/assets/inc/header.php");?>
 
 		<?
 			left_side_menu("blog");
@@ -10,4 +10,4 @@
 		?>
 	</div>
 
-<?include($_SERVER["DOCUMENT_ROOT"]."/footer.php");?>
+<?include($_SERVER["DOCUMENT_ROOT"]."/assets/inc/footer.php");?>

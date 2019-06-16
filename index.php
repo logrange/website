@@ -1,6 +1,6 @@
 <?define ("PAGE", "front");?>
 <?checkFeedback();?>
-<?include($_SERVER["DOCUMENT_ROOT"]."/header.php");?>
+<?include($_SERVER["DOCUMENT_ROOT"]."/assets/inc/header.php");?>
 
 <div class="front-page-intro-block">
 <h1>Logrange</h1>
@@ -291,7 +291,7 @@ of your system health, monitoring, analytics,anomalies prediction, availability 
 		</div>
 </div><!--^contact_us-->
 
-<?include($_SERVER["DOCUMENT_ROOT"]."/footer.php");?>
+<?include($_SERVER["DOCUMENT_ROOT"]."/assets/inc/footer.php");?>
 <script type="text/javascript">
 $("form").validate({
 	rules: {
