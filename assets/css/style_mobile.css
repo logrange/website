@@ -287,6 +287,9 @@
 	h6.level-2, h6.level-2.active + .level-2-submenu {
 		border-bottom: 1px solid #EEE;
 	}
+	h6.level-1 {
+		cursor: pointer;
+	}
 	h6.level-2 {
 		color: #555;
 		font-size: 1.2rem;
