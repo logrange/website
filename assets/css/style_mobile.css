@@ -33,7 +33,7 @@
 		top: 8px;
 	}
 	.navbar.top-navbar .navbar-toggler[aria-expanded="true"] {
-		box-shadow: 0px 0px 4px 0px rgba(0,200,255,0.3);
+		/*box-shadow: 0px 0px 4px 0px rgba(0,200,255,0.3);*/
 	}
 	.navbar.top-navbar .navbar-brand img {
 		margin-top: 0.5em;
