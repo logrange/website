@@ -116,8 +116,13 @@
 		}
 		?>
 		<script>//setting active menu
-			$("a[href='" + document.location.href +"']").addClass("active");
-			$(".page-title-content").html($("a[href='" + document.location.href +"']").html());
+			if ($("h6.dropdown-header + div a[href='" + document.location.href +"']").length) {
+				$("a[href='" + document.location.href +"']").addClass("active");
+				$(".page-title-content").html($("a[href='" + document.location.href +"']").html());
+			} else {
+				$("h6.dropdown-header.active + div a:first-child").addClass("active");
+				$(".page-title-content").html($("h6.dropdown-header.active + div > a").html());
+			}
 		</script>
 		<?
 	}

@@ -6,8 +6,10 @@ $(".smooth-scroll").on("click", function(e){
 });
 
 $(".left-side-menu a").on("click", function() {
+	console.log($(this).html());
 	$(".left-side-menu a").removeClass("active");
 	$(this).addClass("active");
+	$(".page-title-content").html($(this).html());
 });
 $("#copy2clipboard").on("mouseup", setClipboard);
 
@@ -28,7 +30,7 @@ $("h6.level-2").on({
 	"click" : function() {
 		$("h6.level-2").removeClass("active");
 		$(this).addClass("active");
-	}
+}
 });
 $("button.navbar-toggler").on({
 	"click" : function() {
@@ -40,6 +42,13 @@ $(".screen-shadow, .level-2-submenu a").on({
 		$(".navbar.top-navbar .navbar-toggler").attr("aria-expanded", "false");
 		$(".screen-shadow").toggle();
 		$(".navbar-collapse.collapse").removeClass("show");
+	}
+});
+$(".level-2-submenu a").on({
+	"click" : function() {
+		$(".level-2-submenu a").removeClass("active");
+		$(this).addClass("active");
+		$(".page-title-content").html($(this).html());
 	}
 });
 
