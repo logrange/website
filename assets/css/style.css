@@ -110,6 +110,9 @@ body.front-page {
 /*** end region ***/
 
 /*** region search ***/
+body.front-page .search-form-container {
+	display: none;
+}
 .search-form-container input.form-control {
 	box-shadow: none !important;
     background: linear-gradient(0deg, rgba(253,253,253,0) 0%, #FAFAFA 100%);
