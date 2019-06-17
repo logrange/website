@@ -9,7 +9,10 @@ $(".left-side-menu a").on("click", function() {
 	console.log($(this).html());
 	$(".left-side-menu a").removeClass("active");
 	$(this).addClass("active");
-	$(".page-title-content").html($(this).html());
+	var lnk = $(this).attr("href").split("#");
+	var hrf = document.location.href.split("#");
+	if (lnk[0] == hrf[0])
+		$(".page-title-content").html($(this).html());
 });
 $("#copy2clipboard").on("mouseup", setClipboard);
 
@@ -48,7 +51,10 @@ $(".level-2-submenu a").on({
 	"click" : function() {
 		$(".level-2-submenu a").removeClass("active");
 		$(this).addClass("active");
-		$(".page-title-content").html($(this).html());
+		var lnk = $(this).attr("href").split("#");
+		var hrf = document.location.href.split("#");
+		if (lnk[0] == hrf[0])
+			$(".page-title-content").html($(this).html());
 	}
 });
 
