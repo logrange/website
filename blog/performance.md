@@ -1,7 +1,7 @@
 # Benchmarking Logrange: Millions of records per second in stand-alone configuration
 _June 21, 2019 by Dmitry Spasibenko, Konstantin Babushkin_
 
-The intention of this blog post is to present an idea of the Logrange performance. This is the first type of such tests where we try to evaluate its performance. To give the received numbers some sense, we needed to compare them with "something". This "something" became Apache Kafka in a single node configuration. Our goal was not to compare Logrange with Apache Kafka, but use Kafka numbers for interpretting Logrange ones.  
+The intention of this blog post is to present an idea of the Logrange performance. This is the first type of such tests where we try to evaluate its performance. To give the received numbers some sense, we needed to compare them with "something". This "something" became Apache Kafka in a single node configuration. Our goal was not to compare Logrange with Apache Kafka, but use Kafka numbers for interpreting Logrange ones.  
 
 ## What is Logrange?
 [Logrange](https://github.com/logrange/logrange) is an open-source streaming database for aggregating application logs, metrics, audit logs and other machine-generated data from thousands of sources.
@@ -28,11 +28,13 @@ Memory:                 16 GB
 
 The computer has SSD drive with `256Gb` capacity. When the tests were run, we tried to have at least `100Gb` of the disk space available, cleaning data periodically and rerunning the tests.
 
-We spent several hours on tuning Kafka, which was run in a single-node configuration with no compression. The test-code for Kafka was written in Java, because the client in GoLang did not show better results compared to the Java client.
+The stand-alone machine was chosen just to get some relative numbers with eliminating network, which we don't have control over, but which could affect the tests results significantly.
 
-Each test-run included 1, 2, or 4 clients (processes) which opened connections to one of the systems. The clients created 1, 2, 4 or 8 java-threads/go-routines which wrote 2,000,000 records to a Logrange partition or to a Kafka topic. Every one of the thrads/go-routines had dedicated partition/topic. All records were either `100` or `512` bytes each.
+We spent reasonable time on tuning Kafka, which was run in a single-node configuration with no compression. Also, the test-code for Kafka was written in Java, because the GoLang client did not show good results compared to the Java client.
 
-Clients and the tested system (Kafka or Logrange) were run on the same machine, so the network was not envolved, and all the connections were established through the network loopback. 
+Each test-run included 1, 2, or 4 clients (processes) which opened connections to one of the systems. The clients created 1, 2, 4 or 8 java-threads/go-routines which wrote 2,000,000 records to a Logrange partition or to a Kafka topic. Every one of the threads/go-routines had dedicated partition/topic. All records were either `100` or `512` bytes each.
+
+Clients and the tested system (Kafka or Logrange) were run on the same machine, so the network was not involved, and all the connections were established through the network loopback. 
 
 We ran the test scenario several times with different settings and recorded the results in the tables below.
 
@@ -56,7 +58,7 @@ Clients:partitions | Logrange (write) | Logrange (read) | Kafka (write) | Kafka 
 
 Looking at the table at row `2:4` we see, that Logrange wrote records with the speed `375Gb/sec`, but read them back at `191Gb/sec`. Kafka writes and reads with  `140Gb/sec` and `390Gb/sec` respectively.
 
-The data from the table could be visualy represented in the picture:
+The data from the table could be visually represented in the picture:
 
 ![](assets/performance/pic1.png)
 
@@ -69,7 +71,7 @@ The data from the table could be visualy represented in the picture:
 ![](assets/performance/pic3.png)
 
 ### Test results for 512 bytes records
-When we wrote and read 2 million records, but with `512bytes` each, the result became better for both of the systems:
+When we write and read 2 million records, but with `512bytes` each, the result became better for both of the systems:
 
 Clients:partitions | Logrange (write) | Logrange (read) | Kafka (write) | Kafka (read)
 --- | --- | --- | --- | ---
@@ -97,8 +99,8 @@ The table visualization:
 
 ![](assets/performance/pic6.png)
 
-## Interpretting the results
-Both systems deomonstrated significantly high speeds of writing and reading data, which seems to be caused by the speed of the SSD disk where the data was actually stored. The disk Speed Test showed the speed of writing data around `1100Mb/sec` and the data read is about `2200Mb/sec`. Also we observed some test result volatility within 5% of the result fluctuation, which is most probably caused by the disk write/read performance. 
+## Interpreting the results
+Both systems demonstrated significantly high speeds of writing and reading data, which seems to be caused by the speed of the SSD disk where the data was actually stored. The disk Speed Test showed the speed of writing data around `1100Mb/sec` and the data read is about `2200Mb/sec`. Also we observed some test result volatility within 5% of the result fluctuation, which is most probably caused by the disk write/read performance. 
 
 For both systems we observed significant CPU load, which was around 370% for both systems when multiple write/reads are performed concurrently. Logrange and Kafka demonstrated very high speeds of writing data (`~650Mb/sec`), which looks very good, comparing to the maximum pure disk write speed (`~1100Mb/sec`).
 
@@ -106,7 +108,9 @@ Kafka in general, shows relatively high speeds of reading data. We assumed this 
 
 Taking into account the maturity of Kafka and some features that we have in Logrange, the test results look very good and pretty optimistic. 
 
-The speed of wrting data `437Mb/sec` means that system would be able to write about `4.37` millions of records (100 bytes each) per second. For the read operations we observed numbers like `822Mb/sec` for records of `512` bytes each. The speed says that the sytem would be able to return more than `1.6 millions` of such records per second on read requests. 
+The speed of writing data `437Mb/sec` means that system would be able to write about `4.37` millions of records (100 bytes each) per second. For the read operations we observed numbers like `822Mb/sec` for records of `512` bytes each. The speed says that the sytem would be able to return more than `1.6 millions` of such records per second on read requests. 
+
+We are going to continue to measure the Logrange performance in multi-node configuration in cloud and kubernetes. Stay tuned!
 
 ### Talk to us!
 If you want to learn more about Logrange and its use cases, take a look at our [website](https://logrange.io). 
