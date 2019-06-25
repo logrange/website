@@ -56,7 +56,7 @@ Clients:partitions | Logrange (write) | Logrange (read) | Kafka (write) | Kafka 
 4:4|	443|	277|	160|	360
 4:8|	432|	297|	160|	320
 
-Looking at the table at row `2:4` we see, that Logrange wrote records with the speed `375Gb/sec`, but read them back at `191Gb/sec`. Kafka writes and reads with  `140Gb/sec` and `390Gb/sec` respectively.
+Looking at the table at row `2:4` we see, that Logrange wrote records with the speed `375Mb/sec`, but read them back at `191Mb/sec`. Kafka writes and reads with  `140Mb/sec` and `390Mb/sec` respectively.
 
 The data from the table could be visually represented in the picture:
 
