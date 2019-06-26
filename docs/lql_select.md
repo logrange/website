@@ -94,10 +94,10 @@ The following operations allowed to be used with optional record fields values:
 `>=` the filed value is equal or greater than the text provided  
 `<=` the filed value is equal or less than the text provided  
 
-__field transformation functions__
-There are 2 functions available to transform text fields _msg_ and _fields:<field name>_ values:
-`Upper()` - returns all Unicode letters in upper case
-`Lower()` - returns all Unicode letters in lower case
+__field transformation functions__<br/>
+There are 2 functions available to transform text fields _msg_ and _fields:field-name_ values:<br/>
+`Upper()` - returns all Unicode letters in upper case<br/>
+`Lower()` - returns all Unicode letters in lower case<br/>
 
 __Example__: <br/>
 `WHERE msg contains "ERROR" or fields:id="1234"`<br/>
