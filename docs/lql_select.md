@@ -24,13 +24,13 @@ The `<format string>` is a template for formatting records in the result. The te
 For example, the template `"Record content: {msg}\n"` will put the prefix `"Record content: "` before each record's message. The following variables could be used in the template string:
 	
 `ts` - record timestamp<br/>
-`ts.<format>` - record timestamp formatted according the `<format>` (see [GoLang time parsing conventions](https://golang.org/pkg/time/#Parse))<br/>
+`ts.format(<format>)` - record timestamp formatted according the `<format>` (see [GoLang time parsing conventions](https://golang.org/pkg/time/#Parse))<br/>
 `msg` - record message (`msg` field value)<br/>
 `msg.json` - record message escaped and placed in double quotes<br/>
 `vars` - record tags and optional fields put together<br/>
 `vars:<name>` - record _field_ or _tag_ value given by the name provided<br/>
 
-__Example__: `"{ts:2006-01-02} {vars:source} {{{msg}{}"`<br/>
+__Example__: `"{ts.format(2006-01-02)} {vars:source} {{{msg}{}"`<br/>
 __Default value__: `"{msg}\n"`
 
 ### Selecting partitions
@@ -94,8 +94,16 @@ The following operations allowed to be used with optional record fields values:
 `>=` the filed value is equal or greater than the text provided  
 `<=` the filed value is equal or less than the text provided  
 
-__Example__: `WHERE ts contains "ERROR" or fields:id="1234"`<br/>
-__Default value__: `` - empty string, no filter, accepting all records.
+__field transformation functions__
+There are 2 functions available to transform text fields _msg_ and _fields:<field name>_ values:
+`Upper()` - returns all Unicode letters in upper case
+`Lower()` - returns all Unicode letters in lower case
+
+__Example__: <br/>
+`WHERE msg contains "ERROR" or fields:id="1234"`<br/>
+`WHERE Lower(msg) contains "error"`<br/>
+
+__Default value__: `` - empty string. It means no filter applied, so it accepting all records.
 
 ### Specifying the start position 
 The `POSITION` part defines the starting position where records should be read from 
@@ -120,5 +128,5 @@ __Default value__: 50 records
 
 `SELECT FROM name="app1" POSITION tail OFFSET -10` - to read 10 last records, merging all partitions with tag `name="app1"`
 
-`SELECT FROM name="app1" WHERE msg contains "ERROR" LIMIT 1000` - to read 1000 records, that contain word "ERROR", starting from head, merging all partitions with tag `name="app1"`<br/>
+`SELECT FROM name="app1" WHERE upper(msg) contains "ERROR" LIMIT 1000` - to read 1000 records, that contain word "ERROR", starting from head, merging all partitions with tag `name="app1"`<br/>
 
