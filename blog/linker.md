@@ -1,7 +1,7 @@
 # Linker: small library for controlling big projects components
 _June 27 2019 by Dmitry Spasibenko_
 
-[Linker](https://github.com/logrange/linker) is a Golang library which helps to build clean code in big projects. Linker reduces the code complexity in projects with many packages, multi-level modules hierarchy, and complicated dependencies. The library encourages to use design principles like [Dependency Injection](https://en.wikipedia.org/wiki/Dependency_injection) and [Inversion of Control](https://en.wikipedia.org/wiki/Inversion_of_control) for building well-formed project architecture.
+[Linker](https://github.com/logrange/linker) is a Golang library which helps to build clean code in big projects. It supports application components life-cycle, what reduces the code complexity in projects with many packages, multi-level modules hierarchy, and complicated dependencies. The library encourages to use design principles like [Dependency Injection](https://en.wikipedia.org/wiki/Dependency_injection) and [Inversion of Control](https://en.wikipedia.org/wiki/Inversion_of_control) for building well-formed project architecture.
 
 Linker is a part of [Logrange](https://logrange.io) project, and the Logrange database uses it as the main component for controlling the application life-cycle. Nevertheless Linker can be used as a framework for any other project, because it offers design principles, but not a project specific functionalities.
 
