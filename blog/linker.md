@@ -45,7 +45,7 @@ A component name should be unique, if it is not empty. Multiple components with 
 The restrictions above are needed for proper Dependency Injection process and avoid any ambiguity.
 
 ## Dependency Injection 
-In Linker [Dependency Injection](https://en.wikipedia.org/wiki/Dependency_injection) is a process of assigning fields of a registered components by values of other registered compoents. For understanding, which fields of components should be injected, Linker expects the fields be annotated special way. Also, The fields should have public visibility. For example:
+In Linker [Dependency Injection](https://en.wikipedia.org/wiki/Dependency_injection) is a process of assigning fields of a registered components by values of other registered components. For understanding, which fields of components should be injected, Linker expects the fields be annotated special way. Also, The fields should have public visibility. For example:
 
 ```golang
 // MySQLAccessService implements DatabaseAccessService
@@ -68,7 +68,7 @@ Linker detects circular dependencies, the situation when a component has a depen
 
 Also, Linker can inject components via interface and the process could fail in case of an ambiguity is detected. For example, let's say a field has an interface type `I` and the annotation is anonymous. This case Linker will select between the registered components, which implement the interface. If more than one is found, Linker will issue an error, cause an ambiguity happens. etc.
 
-If Linker would be able to resolve dependencies in the all registered components sucessfully, it will switch to "Post Construction" phase.
+If Linker would be able to resolve dependencies in the all registered components successfully, it will switch to "Post Construction" phase.
 
 ## Post Construction
 The “Post Construction” is a procedure by notifying some of registered components when all components dependencies have been resolved successfully. The procedure is executed in context of `Init()` call in the injector. During the procedure injector will call function `PostConstruct()` of all components that implement [PostConstructor](https://github.com/logrange/linker/blob/5dbea0d87b81a70e721f6c359d5f28dc1a01e080/inject.go#L74) interface. The order of calling `PostConstruct()` function for registered components is not defined. Linker guarantees that they will be called after dependency injection, but before the components initialization phase.
@@ -103,20 +103,20 @@ func main() {
 		...
 	)
 	
-	// 3rd step is to inject dependecies and initialize the registered components
+	// 3rd step is to inject dependencies and initialize the registered components
 	inj.Init(ctx)
 	
 	// the injector fails-fast, so if no panic everything is good so far.
 	
 	...
-	// 4th de-initialize all compoments properly
+	// 4th de-initialize all components properly
 	inj.Shutdown()
 }
 ```
 The real code example could be found [here](https://github.com/logrange/logrange/blob/be1cc8dc0ae8fa9154eec91bea33cd2105509e11/server/server.go#L53)
 
 ## Conclusion
-Linker is very simple, but powerful IoC and DI library with straight-forward components life-cycle control. Linker is a part of [Logrange](https://logrange.io) project. If you want to learn more how Linker is used take a look at [Logrnage code on github](https://github.com/logrange/logrange). 
+Linker is very simple, but powerful IoC and DI library with straight-forward components life-cycle control. Linker is a part of [Logrange](https://logrange.io) project. If you want to learn more how Linker is used take a look at [Logrange code on github](https://github.com/logrange/logrange). 
 
 Should you have any comments or suggestions, please do not hesitate to [contact us](https://www.logrange.io/#contact-us) or send us an email (mail@logrange.io).
 
